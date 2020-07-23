@@ -1,0 +1,113 @@
+@import '~ant-design-vue/dist/antd.less';
+@primary-color: #FFBB00; // primary color for all components
+@link-color: #316263; // link color
+// @success-color: #52c41a; // success state color
+// @warning-color: #faad14; // warning state color
+// @error-color: #f5222d; // error state color
+// @font-size-base: 14px; // major text font size
+// @heading-color: rgba(0, 0, 0, 0.85); // heading text color
+// @text-color: rgba(0, 0, 0, 0.65); // major text color
+// @text-color-secondary: rgba(0, 0, 0, 0.45); // secondary text color
+// @disabled-color: rgba(0, 0, 0, 0.25); // disable state color
+// @border-radius-base: 4px; // major border radius
+// @border-color-base: #d9d9d9; // major border color
+// @box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // major shadow for layers
+@dark-primary-color: #383838;
+
+.ant-layout-header {
+    background: @dark-primary-color;
+}
+
+.ant-menu-dark {
+    background-color: @dark-primary-color;
+}
+
+.ant-card-body {
+    padding: 24px 40px !important;
+}
+
+.ant-modal-header {
+    border-bottom: none;
+}
+
+.ant-modal-footer {
+    padding: 10px 16px 20px 16px;
+    border-top: none;
+}
+
+.ant-upload {
+    height: 200px !important;
+}
+
+.card {
+    margin: 50px 15px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.steps-content {
+    padding: 0px 40px;
+}
+
+.steps-content {
+    margin-bottom: 20px;
+}
+
+/* Homepage */
+.container-dark {
+    background-color: #383838;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 50px 50px;
+}
+
+#components-login .login-form {
+    max-width: 300px;
+}
+#components-login .login-form-forgot {
+    float: right;
+}
+#components-login .login-form-button {
+    width: 100%;
+}
+
+.ant-layout-footer {
+    background: #383838;
+    color: #fff;
+}
+
+.logo {
+    width: 350px;
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .container-dark, .container {
+        min-height: 85vh;
+    }
+
+    /* .logo {
+        width: 350px; 
+        position: absolute;
+        top: 32%; 
+        left: 32%;
+    } */
+}
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    /* .logo {
+        width: 350px; 
+        position: absolute; 
+        top: 10%;
+        left: 10%;
+    } */
+}
