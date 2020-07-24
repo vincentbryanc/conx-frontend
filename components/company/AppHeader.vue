@@ -1,5 +1,5 @@
 <template>
-    <a-layout-header class="header" :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
+    <a-layout-header class="header" :style="{ position: 'fixed', zIndex: 999, width: '100%' }">
         <div class="logo">
             <img src="~assets/logo.png" />
         </div>
@@ -7,10 +7,10 @@
             theme="dark"
             mode="horizontal"
             :style="{ lineHeight: '64px' }">
-                <a-icon
+                <!-- <a-icon
                     class="trigger"
                     :type="this.$store.state.collapsed ? 'menu-unfold' : 'menu-fold'"
-                    @click="toggleSidebar" />
+                    @click="toggleSidebar" /> -->
                 <a-icon  
                     type="bell"
                     class="bell" />

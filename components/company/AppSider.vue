@@ -1,5 +1,6 @@
 <template>
-    <a-layout-sider width="200" :style="{ background: '#fff' }" v-model="this.$store.state.collapsed" :collapsedWidth="0" :trigger="null" collapsible>
+    <!-- <a-layout-sider width="200" :style="{ background: '#fff' }" v-model="this.$store.state.collapsed" :collapsedWidth="0" :trigger="null" collapsible> -->
+    <a-layout-sider breakpoint="lg" collapsed-width="0">
         <a-menu
             mode="inline"
             :default-selected-keys="['10']"
