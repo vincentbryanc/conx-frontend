@@ -3,7 +3,7 @@
     <a-layout-sider breakpoint="lg" collapsed-width="0">
         <a-menu
             mode="inline"
-            :default-selected-keys="['10']"
+            :default-selected-keys="['0']"
             :style="{ height: '100%', borderRight: 0 }">
             <a-menu-item-group key="transactions" title="Transactions">
                 <a-sub-menu key="loan">
@@ -37,14 +37,18 @@
                     </a-menu-item>
                 </a-sub-menu>
                 <a-menu-item key="9">
-                    <a-icon type="search" />
-                    <span>Resume Search</span>
+                    <nuxt-link to="resume-search">
+                        <a-icon type="search" />
+                        <span>Resume Search</span>
+                    </nuxt-link>
                 </a-menu-item>
             </a-menu-item-group>
             <a-menu-item-group key="company" title="Company" :style="{ marginTop: '25px' }">
                 <a-menu-item key="10">
-                    <a-icon type="contacts" />
-                    <span>Employees</span>
+                    <nuxt-link to="employees">
+                        <a-icon type="contacts" />
+                        <span>Employees</span>
+                    </nuxt-link>
                 </a-menu-item>
             </a-menu-item-group>
             <a-menu-item-group key="adminstrator" title="Administrator" :style="{ marginTop: '25px' }">
@@ -64,6 +68,11 @@
 <script>
 export default {
     name: "AppSider",
+    // data() {
+    //     return {
+    //         defaultselectedkeys: 10,
+    //     }
+    // }
 }
 </script>
 

@@ -1,5 +1,6 @@
 export const state = () => ({
-    collapsed: false
+    collapsed: false,
+    defaultselectedkeys: 10,
 });
 
 export const mutations = {

@@ -4,21 +4,27 @@
             <a-button type="link" v-on:click="isAdvancedSearchHidden = !isAdvancedSearchHidden">Advance Search</a-button>
             <div v-if="!isAdvancedSearchHidden">
                 <a-form layout="inline">
-                    <a-form-item label="Status">
-                        <a-radio-group>
-                            <a-radio value="loaned">
-                                Loaned
-                            </a-radio>
-                            <a-radio value="available">
-                                Available
-                            </a-radio>
-                        </a-radio-group>
+                    <a-form-item label="Zip Code">
+                        <a-input
+                            placeholder="Zip Code"></a-input>
                     </a-form-item>
-                    <a-form-item label="Date">
-                        <a-date-picker class="date-picker" />
+                    <a-form-item label="Zip Code Range">
+                        <a-input
+                            placeholder="Zip Code Range (Miles)"></a-input>
+                    </a-form-item>
+                    <a-form-item label="Level of Experience">
+                        <a-select
+                            placeholder="Level of Experience" style="width: 180px">
+                            <a-select-option value="master">Master</a-select-option>
+                            <a-select-option value="journeyman">Journeyman</a-select-option>
+                            <a-select-option value="1styear">1st Year</a-select-option>
+                            <a-select-option value="2ndyear">2nd Year</a-select-option>
+                            <a-select-option value="3rdyear">3rd Year</a-select-option>
+                            <a-select-option value="4thyear">4th Year</a-select-option>
+                        </a-select>
                     </a-form-item>
                     <a-form-item>
-                        <a-button type="default">Search <a-icon type="search"></a-icon></a-button>
+                        <a-button type="primary">Search <a-icon type="search"></a-icon></a-button>
                     </a-form-item>
                 </a-form>
             </div>
@@ -71,12 +77,27 @@
                 </template>
             </template>
             <span slot="action">
-                <a-button>View</a-button>
-                <nuxt-link to="/company/employees/edit"><a-button>Edit</a-button></nuxt-link>
-                <a-button>For Lease</a-button>
-                <a-button>Release</a-button>
+                <a-button @click="showModal">View Profile</a-button>
             </span>
         </a-table>
+        <a-modal v-model="visible" title="View Profile" on-ok="handleOk" :width="550">
+            <template slot="footer">
+                <a-button key="back" @click="handleCancel">
+                    Close
+                </a-button>
+            </template>
+            <div>
+                <p><b>Name: </b> Nelson Gale</p>
+                <p><b>Email Address: </b> nelson.gale@gmail.com</p>
+                <p><b>Phone Number: </b> +1 234 5678 901</p>
+                <p><b>Address: </b> 123 St., Mt. Rainier Avenue, California 95035</p>
+                <p><b>Experise: </b> Electrical</p>
+                <p><b>Level of Experience: </b> Master</p>
+                <p><b>Distance willing to travel: </b> 15 Miles</p>
+                <p><b>Areas of Work: </b> Commercial</p>
+                <p><b>Resume Link: </b> <nuxt-link to="#">https://conx.com/resume/my-resume.pdf</nuxt-link></p>
+            </div>
+        </a-modal>
     </div>
 </template>
 
@@ -84,73 +105,27 @@
     const data = [
         {
             key: '1',
-            name: 'Kim Tan',
-            employeeid: 'AOV000001',
-            levelofexperience: 'Master',
-            areaofwork: 'Commercial, Industrial, Residential',
+            name: 'Nelson Gale',
             zipcode: '95035',
-            hourlyrate: '$85',
+            levelofexperience: 'Master',
+            areaofwork: 'Commercial',
+            dateuploaded: 'July 15, 2020',
         },
         {
             key: '2',
-            name: 'Thor Odinson',
-            employeeid: 'AOV000002',
+            name: 'Bruce Banner',
+            zipcode: '95035',
             levelofexperience: 'Master',
             areaofwork: 'Industrial, Fire Alarm, Security',
-            zipcode: '95035',
-            hourlyrate: '$60',
-        },
-        {
-            key: '3',
-            name: 'Luke Charles',
-            employeeid: 'AOV000004',
-            levelofexperience: '2nd Year',
-            areaofwork: 'Industrial, Fire Alarm, Security',
-            zipcode: '95035',
-            hourlyrate: '$100',
-        },
-        {
-            key: '4',
-            name: 'Rylan Bain',
-            employeeid: 'AOV000005',
-            levelofexperience: 'Journeyman',
-            areaofwork: 'Commercial, Industrial, Residential',
-            zipcode: '95035',
-            hourlyrate: '$100',
-        },
-        {
-            key: '5',
-            name: 'Gail Vo',
-            employeeid: 'AOV000006',
-            levelofexperience: 'Journeyman',
-            areaofwork: 'Commercial, Industrial, Residential',
-            zipcode: '95035',
-            hourlyrate: '$100',
-        },
-        {
-            key: '6',
-            name: 'Leo Mosley',
-            employeeid: 'AOV000007',
-            levelofexperience: 'Journeyman',
-            areaofwork: 'Commercial, Industrial, Residential',
-            zipcode: '95035',
-            hourlyrate: '$100',
-        },
-        {
-            key: '7',
-            name: 'Rory Tierney',
-            employeeid: 'AOV000008',
-            levelofexperience: 'Journeyman',
-            areaofwork: 'Commercial, Industrial, Residential',
-            zipcode: '95035',
-            hourlyrate: '$100',
+            dateuploaded: 'July 14, 2020',
         },
     ];
     export default {
-        name: "ReservedEmployees",
+        name: "ResumeSearch",
         data() {
             return {
                 isAdvancedSearchHidden: true,
+                visible: false,
                 data,
                 searchText: '',
                 searchInput: null,
@@ -184,16 +159,16 @@
                         
                     },
                     {
-                        title: 'Employee ID',
-                        dataIndex: 'employeeid',
-                        key: 'employeeid',
+                        title: 'Zip Code',
+                        dataIndex: 'zipcode',
+                        key: 'zipcode',
                         scopedSlots: {
                             filterDropdown: 'filterDropdown',
                             filterIcon: 'filterIcon',
                             customRender: 'customRender',
                         },
                         onFilter: (value, record) =>
-                            record.employeeid
+                            record.zipcode
                             .toString()
                             .toLowerCase()
                             .includes(value.toLowerCase()),
@@ -250,38 +225,16 @@
                         },
                     },
                     {
-                        title: 'Zip Code',
-                        dataIndex: 'zipcode',
-                        key: 'zipcode',
+                        title: 'Date Uploaded',
+                        dataIndex: 'dateuploaded',
+                        key: 'dateuploaded',
                         scopedSlots: {
                             filterDropdown: 'filterDropdown',
                             filterIcon: 'filterIcon',
                             customRender: 'customRender',
                         },
                         onFilter: (value, record) =>
-                            record.zipcode
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                    },
-                    {
-                        title: 'Hourly Rate ($/hr)',
-                        dataIndex: 'hourlyrate',
-                        key: 'hourlyrate',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.hourlyrate
+                            record.dateuploaded
                             .toString()
                             .toLowerCase()
                             .includes(value.toLowerCase()),
@@ -312,12 +265,21 @@
                 clearFilters();
                 this.searchText = '';
             },
+            showModal() {
+                this.visible = true;
+            },
+            handleCancel(e) {
+                this.visible = false;
+            },
         },
     }
 </script>
 
 <style>
-/* .ant-pagination-item {
-    display: none!important;
-} */
+    /* .ant-pagination-item {
+        display: none!important;
+    } */
+    .ant-modal-body {
+        padding: 24px 40px;
+    }
 </style>

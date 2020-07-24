@@ -46,9 +46,9 @@
                     {{ text }}
                 </template>
             </template>
-            <span slot="actions">
+            <span slot="action">
                 <a-button>View</a-button>
-                <nuxt-link to="employees/edit"><a-button>Edit</a-button></nuxt-link>
+                <nuxt-link to="/company/employees/edit"><a-button>Edit</a-button></nuxt-link>
                 <a-button>For Lease</a-button>
                 <a-button>Release</a-button>
             </span>
@@ -215,9 +215,9 @@
                         },
                     },
                     {
-                        title: 'Actions',
-                        key: 'actions',
-                        scopedSlots: { customRender: 'actions' },
+                        title: 'Action',
+                        key: 'action',
+                        scopedSlots: { customRender: 'action' },
                     },
                 ];
                 return columns;
