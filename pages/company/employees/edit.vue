@@ -180,7 +180,7 @@ import AppFooter from '../../../components/AppFooter';
 export default {
     head() {
         return {
-            title: 'Add New Employee',
+            title: 'Edit Employee',
             meta: [
                 {
                     hid: 'description',

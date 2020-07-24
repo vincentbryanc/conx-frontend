@@ -9,31 +9,47 @@
                 <a-sub-menu key="loan">
                     <span slot="title"><a-icon type="project" /><span>Loan</span></span>
                     <a-menu-item key="1">
-                        Requests
+                        <nuxt-link to="loan/requests">
+                            Requests
+                        </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="2">
-                        Billings
+                        <nuxt-link to="loan/billings">
+                            Billings
+                        </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="3">
-                        Financials
+                        <nuxt-link to="loan/financials">
+                            Financials
+                        </nuxt-link>
                     </a-menu-item>
                 </a-sub-menu>
                 <a-sub-menu key="borrow">
                     <span slot="title"><a-icon type="interaction" /><span>Borrow</span></span>
                     <a-menu-item key="4">
-                        Search
+                        <nuxt-link to="borrow/search">
+                            Search
+                        </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="5">
-                        Borrow Cart
+                        <nuxt-link to="borrow/cart">
+                            Borrow Cart
+                        </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="6">
-                        Requests
+                        <nuxt-link to="borrow/requests">
+                            Requests
+                        </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="7">
-                        Billings
+                        <nuxt-link to="borrow/billings">
+                            Billings
+                        </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="8">
-                        Financials
+                        <nuxt-link to="borrow/financials">
+                            Financials
+                        </nuxt-link>
                     </a-menu-item>
                 </a-sub-menu>
                 <a-menu-item key="9">
@@ -53,12 +69,16 @@
             </a-menu-item-group>
             <a-menu-item-group key="adminstrator" title="Administrator" :style="{ marginTop: '25px' }">
                 <a-menu-item key="11">
-                    <a-icon type="team" />
-                    <span>Users</span>
+                    <nuxt-link to="users">
+                        <a-icon type="team" />
+                        <span>Users</span>
+                    </nuxt-link>
                 </a-menu-item>
                 <a-menu-item key="12">
-                    <a-icon type="file" />
-                    <span>Reports</span>
+                    <nuxt-link to="reports">
+                        <a-icon type="file" />
+                        <span>Reports</span>
+                    </nuxt-link>
                 </a-menu-item>
             </a-menu-item-group>
         </a-menu>
