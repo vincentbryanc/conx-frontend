@@ -11,7 +11,10 @@
                 </a-breadcrumb>
                 <a-layout-content class="layout-content">
                     <div>
-                        <h1 class="title">Financials</h1>
+                        <h1 class="title">List of Approved Invoices</h1>
+                    </div>
+                    <div>
+                        <LoanFinancials />
                     </div>
                 </a-layout-content>
             </a-layout>
@@ -24,6 +27,7 @@
 import AppHeader from '../../../../components/company/AppHeader';
 import AppSider from '../../../../components/company/AppSider';
 import AppFooter from '../../../../components/AppFooter';
+import LoanFinancials from '../../../../components/company/loan/financials/LoanFinancials';
 
 export default {
     head() {
@@ -42,6 +46,7 @@ export default {
         AppHeader,
         AppSider,
         AppFooter,
+        LoanFinancials,
     },
 }
 </script>
