@@ -71,7 +71,7 @@
                 </template>
             </template>
             <span slot="action">
-                <a-button>View</a-button>
+                <nuxt-link to="/company/employees/view"><a-button>View</a-button></nuxt-link>
                 <nuxt-link to="/company/employees/edit"><a-button>Edit</a-button></nuxt-link>
                 <a-button>For Lease</a-button>
                 <a-button>Release</a-button>

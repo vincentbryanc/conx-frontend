@@ -47,12 +47,24 @@
                 </template>
             </template>
             <span slot="action">
-                <nuxt-link to="/company/employees/view"><a-button>View</a-button></nuxt-link>
-                <nuxt-link to="/company/employees/edit"><a-button>Edit</a-button></nuxt-link>
-                <a-button>For Lease</a-button>
-                <a-button>Release</a-button>
+                <a-button @click="showModal">View</a-button>
             </span>
         </a-table>
+        <a-modal v-model="visible" title="Work History Details" on-ok="handleOk" :width="550">
+            <template slot="footer">
+                <a-button key="back" @click="handleCancel">
+                    Close
+                </a-button>
+            </template>
+            <div>
+                <p><b>Invoice Number: </b> IVN-07272020-0001</p>
+                <p><b>Date Worked: </b> July 20, 2020 - July 24, 2020</p>
+                <p><b>Company Name: </b> Stark Industries</p>
+                <p><b>Number of Worked Hours: </b> 40</p>
+                <p><b>Hourly Rate ($/hr): </b> $85</p>
+                <p><b>Total Amount Rendered: </b> $3,400.00</p>
+            </div>
+        </a-modal>
     </div>
 </template>
 
@@ -60,18 +72,16 @@
     const data = [
         {
             key: '1',
-            name: 'Kim Tan',
-            employeeid: 'AOV000003',
-            levelofexperience: 'Journeyman',
-            areaofwork: 'Commercial, Industrial, Residential',
-            zipcode: '95035',
-            hourlyrate: '$100',
+            dateworked: 'July 20, 2020 - July 24, 2020',
+            companyname: 'Stark Industries',
+            totalamountrendered: '$3,400.00',
         },
     ];
     export default {
-        name: "ReservedEmployees",
+        name: "WorkHistory",
         data() {
             return {
+                visible: false,
                 data,
                 searchText: '',
                 searchInput: null,
@@ -82,16 +92,16 @@
             columns() {
                 const columns = [
                     {
-                        title: 'Name',
-                        dataIndex: 'name',
-                        key: 'name',
+                        title: 'Date Worked',
+                        dataIndex: 'dateworked',
+                        key: 'dateworked',
                         scopedSlots: {
                             filterDropdown: 'filterDropdown',
                             filterIcon: 'filterIcon',
                             customRender: 'customRender',
                         },
                         onFilter: (value, record) =>
-                            record.name
+                            record.dateworked
                             .toString()
                             .toLowerCase()
                             .includes(value.toLowerCase()),
@@ -105,16 +115,16 @@
                         
                     },
                     {
-                        title: 'Employee ID',
-                        dataIndex: 'employeeid',
-                        key: 'employeeid',
+                        title: 'Company Name',
+                        dataIndex: 'companyname',
+                        key: 'companyname',
                         scopedSlots: {
                             filterDropdown: 'filterDropdown',
                             filterIcon: 'filterIcon',
                             customRender: 'customRender',
                         },
                         onFilter: (value, record) =>
-                            record.employeeid
+                            record.companyname
                             .toString()
                             .toLowerCase()
                             .includes(value.toLowerCase()),
@@ -127,82 +137,16 @@
                         },
                     },
                     {
-                        title: 'Level Of Experience',
-                        dataIndex: 'levelofexperience',
-                        key: 'levelofexperience',
+                        title: 'Total Amount Rendered',
+                        dataIndex: 'totalamountrendered',
+                        key: 'totalamountrendered',
                         scopedSlots: {
                             filterDropdown: 'filterDropdown',
                             filterIcon: 'filterIcon',
                             customRender: 'customRender',
                         },
                         onFilter: (value, record) =>
-                            record.levelofexperience
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                    },
-                    {
-                        title: 'Area of Work',
-                        dataIndex: 'areaofwork',
-                        key: 'areaofwork',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.areaofwork
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                    },
-                    {
-                        title: 'Zip Code',
-                        dataIndex: 'zipcode',
-                        key: 'zipcode',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.zipcode
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                    },
-                    {
-                        title: 'Hourly Rate ($/hr)',
-                        dataIndex: 'hourlyrate',
-                        key: 'hourlyrate',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.hourlyrate
+                            record.totalamountrendered
                             .toString()
                             .toLowerCase()
                             .includes(value.toLowerCase()),
@@ -232,6 +176,12 @@
             handleReset(clearFilters) {
                 clearFilters();
                 this.searchText = '';
+            },
+            showModal() {
+                this.visible = true;
+            },
+            handleCancel(e) {
+                this.visible = false;
             },
         },
     }
