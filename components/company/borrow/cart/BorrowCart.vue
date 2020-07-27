@@ -66,7 +66,7 @@
                 </a-col>
                 <a-col :lg="{ span: 11, offset: 1 }" :md="{ span: 11, offset: 1 }" :sm="{ span: 24 }">
                     <a-form-model-item label="Note">
-                        <a-input type="textarea" rows="3" />
+                        <a-input type="textarea" rows="5" />
                     </a-form-model-item>
                 </a-col>
                 <a-col :lg="{ span: 24 }" :md="{ span: 24 }" :sm="{ span: 24 }" class="text-right">

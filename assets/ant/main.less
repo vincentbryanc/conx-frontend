@@ -3,7 +3,7 @@
 @link-color: #316263; // link color
 // @success-color: #52c41a; // success state color
 // @warning-color: #faad14; // warning state color
-// @error-color: #f5222d; // error state color
+@error-color: #ff6666; // error state color
 // @font-size-base: 14px; // major text font size
 // @heading-color: rgba(0, 0, 0, 0.85); // heading text color
 // @text-color: rgba(0, 0, 0, 0.65); // major text color
@@ -21,6 +21,14 @@
 
 .ant-menu-dark {
     background-color: @dark-primary-color;
+}
+
+.ant-alert-warning {
+    background-color: @error-color;
+}
+
+.ant-alert-warning .ant-alert-icon, .ant-alert-message {
+    color: #fff;
 }
 
 .ant-card-body {
