@@ -16,10 +16,10 @@
                     <div>
                         <a-tabs default-active-key="1">
                             <a-tab-pane key="1" tab="summary">
-                                Summary
+                                <LoanBillingSummary />
                             </a-tab-pane>
                             <a-tab-pane key="2" tab="clientinvoice" force-render>
-                                Client invoice
+                                <LoanBillingClientInvoice />
                             </a-tab-pane>
                         </a-tabs>
                     </div>
@@ -34,8 +34,8 @@
 import AppHeader from '../../../../components/company/AppHeader';
 import AppSider from '../../../../components/company/AppSider';
 import AppFooter from '../../../../components/AppFooter';
-// import LoanBillingSummary from '../../../../components/company/loan/billings/LoanBillingSummary';
-// import LoanBillingClientInvoice from '../../../../components/company/loan/billings/LoanBillingClientInvoice';
+import LoanBillingSummary from '../../../../components/company/loan/billings/LoanBillingSummary';
+import LoanBillingClientInvoice from '../../../../components/company/loan/billings/LoanBillingClientInvoice';
 
 export default {
     head() {
@@ -54,8 +54,8 @@ export default {
         AppHeader,
         AppSider,
         AppFooter,
-        // LoanBillingSummary,
-        // LoanBillingClientInvoice,
+        LoanBillingSummary,
+        LoanBillingClientInvoice,
     },
 }
 </script>
