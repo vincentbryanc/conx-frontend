@@ -1,33 +1,30 @@
 <template>
     <div>
         <div class="text-right">
-            <a-button type="link" v-on:click="isAdvancedSearchHidden = !isAdvancedSearchHidden">Advance Search</a-button>
-            <div v-if="!isAdvancedSearchHidden">
-                <a-form layout="inline">
-                    <a-form-item label="Zip Code">
-                        <a-input
-                            placeholder="Zip Code"></a-input>
-                    </a-form-item>
-                    <a-form-item label="Zip Code Range">
-                        <a-input
-                            placeholder="Zip Code Range (Miles)"></a-input>
-                    </a-form-item>
-                    <a-form-item label="Level of Experience">
-                        <a-select
-                            placeholder="Level of Experience" style="width: 180px">
-                            <a-select-option value="master">Master</a-select-option>
-                            <a-select-option value="journeyman">Journeyman</a-select-option>
-                            <a-select-option value="1styear">1st Year</a-select-option>
-                            <a-select-option value="2ndyear">2nd Year</a-select-option>
-                            <a-select-option value="3rdyear">3rd Year</a-select-option>
-                            <a-select-option value="4thyear">4th Year</a-select-option>
-                        </a-select>
-                    </a-form-item>
-                    <a-form-item>
-                        <a-button type="primary">Search <a-icon type="search"></a-icon></a-button>
-                    </a-form-item>
-                </a-form>
-            </div>
+            <a-form layout="inline">
+                <a-form-item label="Zip Code">
+                    <a-input
+                        placeholder="Zip Code"></a-input>
+                </a-form-item>
+                <a-form-item label="Zip Code Range">
+                    <a-input
+                        placeholder="Zip Code Range (Miles)"></a-input>
+                </a-form-item>
+                <a-form-item label="Level of Experience">
+                    <a-select
+                        placeholder="Level of Experience" style="width: 180px">
+                        <a-select-option value="master">Master</a-select-option>
+                        <a-select-option value="journeyman">Journeyman</a-select-option>
+                        <a-select-option value="1styear">1st Year</a-select-option>
+                        <a-select-option value="2ndyear">2nd Year</a-select-option>
+                        <a-select-option value="3rdyear">3rd Year</a-select-option>
+                        <a-select-option value="4thyear">4th Year</a-select-option>
+                    </a-select>
+                </a-form-item>
+                <a-form-item>
+                    <a-button type="primary">Search <a-icon type="search"></a-icon></a-button>
+                </a-form-item>
+            </a-form>
         </div>
         <br />
         <a-table :data-source="data" :columns="columns">
@@ -124,7 +121,6 @@
         name: "ResumeSearch",
         data() {
             return {
-                isAdvancedSearchHidden: true,
                 visible: false,
                 data,
                 searchText: '',
