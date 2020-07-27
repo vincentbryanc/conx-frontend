@@ -12,7 +12,7 @@
                 <a-layout-content class="layout-content">
                     <h1 class="title">Search</h1>
                     <div class="text-right">
-                        <nuxt-link to='/company/borrow/search'><a-button type="primary">Borrow Cart <a-icon type="shopping" /></a-button></nuxt-link>
+                        <nuxt-link to="/company/borrow/cart"><a-button type="primary">Borrow Cart <a-icon type="shopping" /></a-button></nuxt-link>
                     </div>
                     <br />
                     <SearchEmployees />
@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import AppHeader from '../../../components/company/AppHeader';
-import AppSider from '../../../components/company/AppSider';
-import AppFooter from '../../../components/AppFooter';
-import SearchEmployees from '../../../components/company/borrow/search/SearchEmployees';
+import AppHeader from '../../../../components/company/AppHeader';
+import AppSider from '../../../../components/company/AppSider';
+import AppFooter from '../../../../components/AppFooter';
+import SearchEmployees from '../../../../components/company/borrow/search/SearchEmployees';
 
 export default {
     head() {

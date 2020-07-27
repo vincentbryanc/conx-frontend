@@ -50,45 +50,55 @@
                 <a-button @click="showModal">View <a-icon type="eye"></a-icon></a-button>
             </span>
         </a-table>
-        <a-modal v-model="visible" title="Request Details" on-ok="handleOk" :width="550">
+        <a-modal v-model="visible" title="Request Details" on-ok="handleOk" :width="1000">
             <template slot="footer">
-                <a-button key="back" @click="handleCancel">
-                    Close
-                </a-button>
+                <a-button key="back" @click="handleCancel">Close</a-button>
+                <a-button type="danger" @click="handleCancel">Cancel Request <a-icon type="close"></a-icon></a-button>
             </template>
             <div>
-                <p><b>Employee ID: </b> AOV000001</p>
-                <p><b>Employee Name: </b> Steve Rogers</p>
-                <p><b>Hourly Rate ($/hr): </b> $85</p>
-                <p><b>Requested Date: </b> July 15, 2020</p>
-                <p><b>Company Name: </b> Stark Industries</p>
-                <p><b>Duration of Request: </b> July 20, 2020 - July 24, 2020</p>
-                <p><b>Contact Name: </b> Natasha Romanoff</p>
-                <p><b>Contact Number: </b> (646) 552-0791</p>
-                <p><b>Address: </b> 200 Park Avenue, New York</p>
-                <p><b>Declined Date: </b> July 15, 2020</p>
-                <p><b>Declined By: </b> Danny Sullivan (Owner)</p>
-                <p><b>Requester Note: </b> Requesting this employees</p>
-                <p><b>Approver Note: </b> Declined!</p>
+                <a-row>
+                    <a-col :lg="{ span: 14 }" :md="{ span: 12 }" :sm="{ span: 24 }">
+                        <div><b>Requested Date: </b> July 15, 2020</div>
+                        <div><b>Duration of Request: </b> July 20, 2020 - July 24, 2020</div>
+                        <div><b>Requested By: </b> Danny Sullivan</div>
+                    </a-col>
+                    <a-col :lg="{ span: 9, offset: 1 }" :md="{ span: 11, offset: 1 }" :sm="{ span: 24 }">
+                        <div>
+                            <b>Requester Note: </b>
+                            <p>Requesting for this employees</p>
+                        </div>
+                    </a-col>
+                </a-row>
+                <br />
+                <a-row>
+                    <a-col :lg="{ span: 24 }" :md="{ span: 24 }" :sm="{ span: 24 }">
+                        <h3 class="text-center">List of Requested Employees</h3>
+                        <ListOfRequestedEmployees />
+                    </a-col>
+                </a-row>
             </div>
         </a-modal>
     </div>
 </template>
 
 <script>
+import ListOfRequestedEmployees from './ListOfRequestedEmployees';
 const data = [
     {
         key: '1',
-        declineddate: 'July 15, 2020',
-        employeename: 'Steve Rogers',
-        clientname: 'Stark Industries',
-        contactname: 'Natasha Romanoff',
-        contactnumber: '(646) 552-0791',
-        note: 'Declined!',
+        requesteddate: 'July 15, 2020',
+        requestedby: 'Danny Sullivan',
+        requesternote: 'Requesting for this employees',
+    },
+    {
+        key: '2',
+        requesteddate: 'July 16, 2020',
+        requestedby: 'Danny Sullivan',
+        requesternote: 'Requesting for this employees',
     },
 ];
 export default {
-    name: "LoanDeclinedRequests",
+    name: "BorrowPendingRequests",
     data() {
         return {
             visible: false,
@@ -98,20 +108,23 @@ export default {
             searchedColumn: '',
         };
     },
+    components: {
+        ListOfRequestedEmployees,
+    },
     computed: {
         columns() {
             const columns = [
                 {
-                    title: 'Declined Date',
-                    dataIndex: 'declineddate',
-                    key: 'declineddate',
+                    title: 'Requested Date',
+                    dataIndex: 'requesteddate',
+                    key: 'requesteddate',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.declineddate
+                        record.requesteddate
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -125,16 +138,16 @@ export default {
                     
                 },
                 {
-                    title: 'Employee Name',
-                    dataIndex: 'employeename',
-                    key: 'employeename',
+                    title: 'Requested By',
+                    dataIndex: 'requestedby',
+                    key: 'requestedby',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.employeename
+                        record.requestedby
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -147,92 +160,9 @@ export default {
                     },
                 },
                 {
-                    title: 'Client Name',
-                    dataIndex: 'clientname',
-                    key: 'clientname',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.clientname
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Contact Name',
-                    dataIndex: 'contactname',
-                    key: 'contactname',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.contactname
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Contact Number',
-                    dataIndex: 'contactnumber',
-                    key: 'contactnumber',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.contactnumber
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Note',
-                    dataIndex: 'note',
-                    key: 'note',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.note
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    title: 'Requester Note',
+                    dataIndex: 'requesternote',
+                    key: 'requesternote',
                 },
                 {
                     title: 'Action',

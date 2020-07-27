@@ -205,16 +205,16 @@ export default {
                     },
                 },
                 {
-                    title: 'Contact Number',
-                    dataIndex: 'contactnumber',
-                    key: 'contactnumber',
+                    title: 'Contact Name',
+                    dataIndex: 'contactname',
+                    key: 'contactname',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.contactnumber
+                        record.contactname
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
