@@ -16,7 +16,7 @@
                     class="bell" />
                 <a-sub-menu>
                     <span slot="title" class="submenu-title-wrapper">
-                        <span>Agents of Value</span>
+                        <span>Administrator</span>
                     </span>
                     <a-menu-item key="account">
                         Profile
