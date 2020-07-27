@@ -3,12 +3,12 @@
         <div>
             <a-form layout="inline">
                 <a-form-item label="Client">
-                        <a-select 
-                            default-value="Stark Industries"
-                            style="width: 200px">
-                            <a-select-option value="Stark Industries">Stark Industries</a-select-option>
-                        </a-select>
-                    </a-form-item>
+                    <a-select 
+                        default-value="Stark Industries"
+                        style="width: 200px">
+                        <a-select-option value="Stark Industries">Stark Industries</a-select-option>
+                    </a-select>
+                </a-form-item>
             </a-form>
         </div>
         <br />
@@ -59,15 +59,21 @@
                 </template>
             </template>
             <span slot="action">
-                <a-button >Resolve</a-button>
+                <a-button @click="showModal">Resolve</a-button>
                 <a-button>Update</a-button>
                 <a-button>Send</a-button>
             </span>
         </a-table>
+        <a-modal v-model="visible" title="Billing Details" :width="750" :style="{ maxHeight: 100 }" :footer="null">
+            <div>
+                <LoanBillingDetails />
+            </div>
+        </a-modal>
     </div>
 </template>
 
 <script>
+import LoanBillingDetails from './LoanBillingDetails';
 const data = [
     {
         key: '1',

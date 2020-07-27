@@ -15,10 +15,10 @@
                     </div>
                     <div>
                         <a-tabs default-active-key="1">
-                            <a-tab-pane key="1" tab="summary">
+                            <a-tab-pane key="1" tab="Summary">
                                 <LoanBillingSummary />
                             </a-tab-pane>
-                            <a-tab-pane key="2" tab="clientinvoice" force-render>
+                            <a-tab-pane key="2" tab="Client Invoice" force-render>
                                 <LoanBillingClientInvoice />
                             </a-tab-pane>
                         </a-tabs>
