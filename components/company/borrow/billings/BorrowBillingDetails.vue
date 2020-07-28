@@ -1,330 +1,162 @@
 <template>
     <div>
-        <div>
-            <a-form layout="inline">
-                <a-form-item label="Requested By">
-                        <a-select 
-                            default-value="Stark Industries"
-                            style="width: 200px">
-                            <a-select-option value="Stark Industries">Stark Industries</a-select-option>
-                        </a-select>
-                    </a-form-item>
-            </a-form>
-        </div>
+        <a-row>
+            <a-col :lg="{ span: 24 }" :md="{ span: 24 }" :sm="{ span: 24 }">
+                <div style="float: right">
+                    <a-button>Print <a-icon type="printer"></a-icon></a-button>
+                </div>
+                <div>
+                    <b>Employee Name: </b> Steve Rogers <br /> 
+                </div>
+                <div>
+                    <b>Duration of Work </b> <br />
+                    Start Date: <span>July 20, 2020</span>
+                    End Date: <span>July 24, 2020</span>
+                </div>
+            </a-col>
+        </a-row>
         <br />
-        <a-table :data-source="data" :columns="columns">
-            <div
-                slot="filterDropdown"
-                slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
-                style="padding: 8px">
-                <a-input
-                    v-ant-ref="c => (searchInput = c)"
-                    :placeholder="`Search ${column.title}`"
-                    :value="selectedKeys[0]"
-                    style="width: 188px; margin-bottom: 8px; display: block;"
-                    @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
-                    @pressEnter="() => handleSearch(selectedKeys, confirm, column.dataIndex)" />
-                <a-button
-                    type="primary"
-                    icon="search"
-                    size="small"
-                    style="width: 90px; margin-right: 8px"
-                    @click="() => handleSearch(selectedKeys, confirm, column.dataIndex)" >
-                    Search
-                </a-button>
-                <a-button size="small" style="width: 90px" @click="() => handleReset(clearFilters)">
-                    Reset
-                </a-button>
-            </div>
-            <a-icon
-                slot="filterIcon"
-                slot-scope="filtered"
-                type="search"
-                :style="{ color: filtered ? '#108ee9' : undefined }" />
-            <template slot="customRender" slot-scope="text, record, index, column">
-                <span v-if="searchText && searchedColumn === column.dataIndex">
-                    <template
-                        v-for="(fragment, i) in text
-                            .toString()
-                            .split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))">
-                        <mark
-                            v-if="fragment.toLowerCase() === searchText.toLowerCase()"
-                            :key="i"
-                            class="highlight">{{ fragment }}</mark>
-                        <template v-else>{{ fragment }}</template>
+        <a-row>
+            <a-col :lg="{ span: 24 }" :md="{ span: 24 }" :sm="{ span: 24 }">
+                <a-calendar>
+                    <div slot="dateCellRender" slot-scope="value" class="events">
+                        <span v-for="item in getListData(value)" :key="item.content">
+                            <p class="hoursworked">{{ item.hoursworkerd }} hours</p>
+                        </span>
+                    </div>
+                    <template slot="monthCellRender" slot-scope="value">
+                        <div v-if="getMonthData(value)" class="notes-month">
+                            <section>{{ getMonthData(value) }}</section>
+                            <span>Backlog number</span>
+                        </div>
                     </template>
-                </span>
-                <template v-else>
-                    {{ text }}
-                </template>
-            </template>
-            <span slot="action">
-                <a-button >Summary</a-button>
-            </span>
-        </a-table>
+                </a-calendar>
+            </a-col>
+        </a-row>
+        <br />
+        <a-row>
+            <a-col :lg="{ span: 12 }" :md="{ span: 12 }" :sm="{ span: 24 }">
+                <a-form>
+                    <a-form-item>
+                        <label>Other Expenses</label>
+                        <a-input
+                            placeholder="Other Expenses" />
+                    </a-form-item>
+                    <label v-if="this.$store.state.action === 'resolve'">Client Request Message</label>
+                    <label v-else>Note</label>
+                    <a-form-item>
+                        <a-input type="textarea" rows="3" />
+                    </a-form-item>
+                </a-form>
+            </a-col>
+            <a-col :lg="{ span: 12 }" :md="{ span: 12 }" :sm="{ span: 24 }">
+                <br />
+                <a-col :lg="{ span: 16 }" :md="{ span: 16 }" :sm="{ span: 16 }">
+                    <div class="text-right">
+                        <b>Subtotal</b>
+                    </div>
+                </a-col>
+                <a-col :lg="{ span: 8 }" :md="{ span: 8 }" :sm="{ span: 8 }">
+                    <div class="text-right">
+                        <b>$3,400.00</b>
+                    </div>
+                </a-col>
+                <a-col :lg="{ span: 16 }" :md="{ span: 16 }" :sm="{ span: 16 }">
+                    <div class="text-right">
+                        <b>Service Charge (10%)</b>
+                    </div>
+                </a-col>
+                <a-col :lg="{ span: 8 }" :md="{ span: 8 }" :sm="{ span: 8 }">
+                    <div class="text-right">
+                        <b>$340.00</b>
+                    </div>
+                </a-col>
+                <a-col :lg="{ span: 16 }" :md="{ span: 16 }" :sm="{ span: 16 }">
+                    <div class="text-right">
+                        <b>Other Expenses</b>
+                    </div>
+                </a-col>
+                <a-col :lg="{ span: 8 }" :md="{ span: 8 }" :sm="{ span: 8 }">
+                    <div class="text-right">
+                        <b>$0.00</b>
+                    </div>
+                </a-col>
+                <a-col :lg="{ span: 16 }" :md="{ span: 16 }" :sm="{ span: 16 }">
+                    <div class="text-right">
+                        <b>Tax</b>
+                    </div>
+                </a-col>
+                <a-col :lg="{ span: 8 }" :md="{ span: 8 }" :sm="{ span: 8 }">
+                    <div class="text-right">
+                        <b>$374.00</b>
+                    </div>
+                </a-col>
+                <a-col :lg="{ span: 16 }" :md="{ span: 16 }" :sm="{ span: 16 }">
+                    <div class="text-right">
+                        <h2><b>Invoice Total</b></h2>
+                    </div>
+                </a-col>
+                <a-col :lg="{ span: 8 }" :md="{ span: 8 }" :sm="{ span: 8 }">
+                    <div class="text-right">
+                        <h2><b>$4,114.00</b></h2>
+                    </div>
+                </a-col>
+            </a-col>
+        </a-row>
     </div>
 </template>
 
 <script>
-const data = [
-    {
-        key: '1',
-        loanedworkerid: 'AOV000001',
-        initialdate: 'Jul 20, 2020',
-        cutoffdate: 'Jul 24, 2020',
-        rate: '$60',
-        renderedhours: '40',
-        otherexpenses: '$0.00',
-        totalbill: '$2904.00',
-        status: 'For Approval',
-    },
-    {
-        key: '2',
-        loanedworkerid: 'AOV000002',
-        initialdate: 'Jul 20, 2020',
-        cutoffdate: 'Jul 24, 2020',
-        rate: '$85',
-        renderedhours: '40',
-        otherexpenses: '$0.00',
-        totalbill: '$4,114.00',
-        status: 'Pending',
-    },
-    {
-        key: '3',
-        loanedworkerid: 'AOV000003',
-        initialdate: 'Jul 27, 2020',
-        cutoffdate: 'Jul 31, 2020',
-        rate: '$100',
-        renderedhours: '0',
-        otherexpenses: '$0.00',
-        totalbill: '$0.00',
-        status: 'Work in Progress',
-    },
-];
 export default {
-    name: "LoanBillingSummary",
-    data() {
-        return {
-            visible: false,
-            data,
-            searchText: '',
-            searchInput: null,
-            searchedColumn: '',
-        };
-    },
-    computed: {
-        columns() {
-            const columns = [
-                {
-                    title: 'Loaned Worker',
-                    dataIndex: 'loanedworkerid',
-                    key: 'loanedworkerid',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.loanedworkerid
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Initial Date',
-                    dataIndex: 'initialdate',
-                    key: 'initialdate',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.initialdate
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Cut-off Date',
-                    dataIndex: 'cutoffdate',
-                    key: 'cutoffdate',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.cutoffdate
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Hourly Rate ($/hr)',
-                    dataIndex: 'rate',
-                    key: 'rate',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.rate
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Rendered Hours',
-                    dataIndex: 'renderedhours',
-                    key: 'renderedhours',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.renderedhours
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Other Expenses',
-                    dataIndex: 'otherexpenses',
-                    key: 'otherexpenses',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.otherexpenses
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Total Bill',
-                    dataIndex: 'totalbill',
-                    key: 'totalbill',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.totalbill
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Status',
-                    dataIndex: 'status',
-                    key: 'status',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.status
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
-                },
-                {
-                    title: 'Action',
-                    key: 'action',
-                    scopedSlots: { customRender: 'action' },
-                },
-            ];
-            return columns;
-        },
-    },
+    name: "BorrowBillingDetails",
     methods: {
-        handleSearch(selectedKeys, confirm, dataIndex) {
-            confirm();
-            this.searchText = selectedKeys[0];
-            this.searchedColumn = dataIndex;
+        getListData(value) {
+            let listData;
+            switch (value.date()) {
+                case 20:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                case 21:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                case 22:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                case 23:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                case 24:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                default:
+            }
+            return listData || [];
         },
-        handleReset(clearFilters) {
-            clearFilters();
-            this.searchText = '';
-        },
-        showModal() {
-            this.visible = true;
-        },
-        handleCancel(e) {
-            this.visible = false;
+
+        getMonthData(value) {
+            if (value.month() === 8) {
+                return 1394;
+            }
         },
     },
 }
 </script>
 
-<style>
-/* .ant-pagination-item {
-    display: none!important;
-} */
-.ant-modal-body {
-    padding: 24px 40px;
+<style scoped>
+.hoursworked {
+    color: #12109C;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
 }
 </style>

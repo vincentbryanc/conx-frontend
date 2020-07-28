@@ -323,7 +323,4 @@ export default {
 /* .ant-pagination-item {
     display: none!important;
 } */
-.ant-modal-body {
-    padding: 24px 40px;
-}
 </style>

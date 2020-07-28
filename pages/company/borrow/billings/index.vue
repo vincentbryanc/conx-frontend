@@ -18,8 +18,8 @@
                             <a-tab-pane key="1" tab="Summary">
                                 <BorrowBillingSummary />
                             </a-tab-pane>
-                            <a-tab-pane key="2" tab="Billing Details" force-render>
-                                <BorrowBillingDetails />
+                            <a-tab-pane key="2" tab="Billing Invoice" force-render>
+                                <BorrowBillingInvoice />
                             </a-tab-pane>
                         </a-tabs>
                     </div>
@@ -35,7 +35,7 @@ import AppHeader from '../../../../components/company/AppHeader';
 import AppSider from '../../../../components/company/AppSider';
 import AppFooter from '../../../../components/AppFooter';
 import BorrowBillingSummary from '../../../../components/company/borrow/billings/BorrowBillingSummary';
-import BorrowBillingDetails from '../../../../components/company/borrow/billings/BorrowBillingDetails';
+import BorrowBillingInvoice from '../../../../components/company/borrow/billings/BorrowBillingInvoice';
 
 export default {
     head() {
@@ -55,7 +55,7 @@ export default {
         AppSider,
         AppFooter,
         BorrowBillingSummary,
-        BorrowBillingDetails,
+        BorrowBillingInvoice,
     },
 }
 </script>

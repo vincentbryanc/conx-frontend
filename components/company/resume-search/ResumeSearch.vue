@@ -99,183 +99,180 @@
 </template>
 
 <script>
-    const data = [
-        {
-            key: '1',
-            name: 'Nelson Gale',
-            zipcode: '95035',
-            levelofexperience: 'Master',
-            areaofwork: 'Commercial',
-            dateuploaded: 'July 15, 2020',
+const data = [
+    {
+        key: '1',
+        name: 'Nelson Gale',
+        zipcode: '95035',
+        levelofexperience: 'Master',
+        areaofwork: 'Commercial',
+        dateuploaded: 'July 15, 2020',
+    },
+    {
+        key: '2',
+        name: 'Bruce Banner',
+        zipcode: '95035',
+        levelofexperience: 'Master',
+        areaofwork: 'Industrial, Fire Alarm, Security',
+        dateuploaded: 'July 14, 2020',
+    },
+];
+export default {
+    name: "ResumeSearch",
+    data() {
+        return {
+            visible: false,
+            data,
+            searchText: '',
+            searchInput: null,
+            searchedColumn: '',
+        };
+    },
+    computed: {
+        columns() {
+            const columns = [
+                {
+                    title: 'Name',
+                    dataIndex: 'name',
+                    key: 'name',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.name
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                    
+                },
+                {
+                    title: 'Zip Code',
+                    dataIndex: 'zipcode',
+                    key: 'zipcode',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.zipcode
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Level Of Experience',
+                    dataIndex: 'levelofexperience',
+                    key: 'levelofexperience',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.levelofexperience
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Area of Work',
+                    dataIndex: 'areaofwork',
+                    key: 'areaofwork',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.areaofwork
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Date Uploaded',
+                    dataIndex: 'dateuploaded',
+                    key: 'dateuploaded',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.dateuploaded
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Action',
+                    key: 'action',
+                    scopedSlots: { customRender: 'action' },
+                },
+            ];
+            return columns;
         },
-        {
-            key: '2',
-            name: 'Bruce Banner',
-            zipcode: '95035',
-            levelofexperience: 'Master',
-            areaofwork: 'Industrial, Fire Alarm, Security',
-            dateuploaded: 'July 14, 2020',
+    },
+    methods: {
+        handleSearch(selectedKeys, confirm, dataIndex) {
+            confirm();
+            this.searchText = selectedKeys[0];
+            this.searchedColumn = dataIndex;
         },
-    ];
-    export default {
-        name: "ResumeSearch",
-        data() {
-            return {
-                visible: false,
-                data,
-                searchText: '',
-                searchInput: null,
-                searchedColumn: '',
-            };
+        handleReset(clearFilters) {
+            clearFilters();
+            this.searchText = '';
         },
-        computed: {
-            columns() {
-                const columns = [
-                    {
-                        title: 'Name',
-                        dataIndex: 'name',
-                        key: 'name',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.name
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                        
-                    },
-                    {
-                        title: 'Zip Code',
-                        dataIndex: 'zipcode',
-                        key: 'zipcode',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.zipcode
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                    },
-                    {
-                        title: 'Level Of Experience',
-                        dataIndex: 'levelofexperience',
-                        key: 'levelofexperience',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.levelofexperience
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                    },
-                    {
-                        title: 'Area of Work',
-                        dataIndex: 'areaofwork',
-                        key: 'areaofwork',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.areaofwork
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                    },
-                    {
-                        title: 'Date Uploaded',
-                        dataIndex: 'dateuploaded',
-                        key: 'dateuploaded',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.dateuploaded
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                    },
-                    {
-                        title: 'Action',
-                        key: 'action',
-                        scopedSlots: { customRender: 'action' },
-                    },
-                ];
-                return columns;
-            },
+        showModal() {
+            this.visible = true;
         },
-        methods: {
-            handleSearch(selectedKeys, confirm, dataIndex) {
-                confirm();
-                this.searchText = selectedKeys[0];
-                this.searchedColumn = dataIndex;
-            },
-            handleReset(clearFilters) {
-                clearFilters();
-                this.searchText = '';
-            },
-            showModal() {
-                this.visible = true;
-            },
-            handleCancel(e) {
-                this.visible = false;
-            },
+        handleCancel(e) {
+            this.visible = false;
         },
-    }
+    },
+}
 </script>
 
 <style>
-    /* .ant-pagination-item {
-        display: none!important;
-    } */
-    .ant-modal-body {
-        padding: 24px 40px;
-    }
+/* .ant-pagination-item {
+    display: none!important;
+} */
 </style>

@@ -1,5 +1,16 @@
 <template>
     <div>
+        <div>
+            <a-form layout="inline">
+                <a-form-item label="Requested By">
+                        <a-select 
+                            default-value="Stark Industries"
+                            style="width: 200px">
+                            <a-select-option value="Stark Industries">Stark Industries</a-select-option>
+                        </a-select>
+                    </a-form-item>
+            </a-form>
+        </div>
         <br />
         <a-table :data-source="data" :columns="columns">
             <div
@@ -47,80 +58,108 @@
                     {{ text }}
                 </template>
             </template>
-            <span slot="action">
-                <a-button @click="showModal">View <a-icon type="eye"></a-icon></a-button>
+            <span slot="action" slot-scope="text, record">
+                <a-button 
+                    @click="showModal" 
+                    v-if="record.status !== 'Work in Progress'">Summary</a-button>
             </span>
         </a-table>
-        <a-modal v-model="visible" title="Invoice" :width="750" :style="{ maxHeight: 100 }" :footer="null">
+        <a-modal v-model="visible" title="Billing Details" :width="1000" :style="{ maxHeight: 100 }">
+            <template slot="footer">
+                <a-button 
+                    type="primary" 
+                    @click="showModalRequestModification">Request Modification <a-icon type="edit" /></a-button>
+                <a-button 
+                    type="success" 
+                    @click="handleCancel">Approve Billing <a-icon type="check" /></a-button>
+            </template>
             <div>
-                <LoanFinancialInvoiceDetails />
+                <BorrowBillingDetails />
+            </div>
+        </a-modal>
+        <a-modal v-model="visiblerequestmodification" title="Request Modification" :width="500" :style="{ maxHeight: 500 }">
+            <template slot="footer">
+                <a-button 
+                    type="primary"
+                    @click="handleCancelRequestModification">Cancel <a-icon type="close" /></a-button>
+                <a-button 
+                    type="success" 
+                    @click="handleCancelRequestModification">Submit Request <a-icon type="check" /></a-button>
+            </template>
+            <div>
+                <a-form>
+                    <a-form-item>
+                        <a-input type="textarea" rows="5" />
+                    </a-form-item>
+                </a-form>
             </div>
         </a-modal>
     </div>
 </template>
 
 <script>
-import LoanFinancialInvoiceDetails from './LoanFinancialInvoiceDetails';
+import BorrowBillingDetails from './BorrowBillingDetails';
 const data = [
     {
         key: '1',
-        transactiondate: 'July 24, 2020 10:00AM',
-        invoicenumber: 'IVN-07242020-003',
-        employeename: 'Steve Rogers',
-        noofhoursworked: '40',
-        billingrate: '$85',
-        totalcost: '$4,114.00',
-        status: 'Waiting for Payment',
+        loanedworkerid: 'AOV000001',
+        initialdate: 'Jul 20, 2020',
+        cutoffdate: 'Jul 24, 2020',
+        rate: '$60',
+        renderedhours: '40',
+        otherexpenses: '$0.00',
+        totalbill: '$2904.00',
+        status: 'For Approval',
     },
     {
         key: '2',
-        transactiondate: 'July 20, 2020 01:00PM',
-        invoicenumber: 'IVN-07242020-002',
-        employeename: 'Rylan Bain',
-        noofhoursworked: '40',
-        billingrate: '$100',
-        totalcost: '$4,840.00',
-        status: 'Payment Received',
+        loanedworkerid: 'AOV000002',
+        initialdate: 'Jul 20, 2020',
+        cutoffdate: 'Jul 24, 2020',
+        rate: '$85',
+        renderedhours: '40',
+        otherexpenses: '$0.00',
+        totalbill: '$4,114.00',
+        status: 'Pending',
     },
     {
         key: '3',
-        transactiondate: 'July 20, 2020 02:00PM',
-        invoicenumber: 'IVN-07242020-001',
-        employeename: 'Gail Vo',
-        noofhoursworked: '40',
-        billingrate: '$100',
-        totalcost: '$4,840.00',
-        status: 'Disbursed',
+        loanedworkerid: 'AOV000003',
+        initialdate: 'Jul 27, 2020',
+        cutoffdate: 'Jul 31, 2020',
+        rate: '$100',
+        renderedhours: '0',
+        otherexpenses: '$0.00',
+        totalbill: '$0.00',
+        status: 'Work in Progress',
     },
 ];
 export default {
-    name: "LoanFinancials",
+    name: "BorrowBillingInvoice",
     data() {
         return {
             visible: false,
+            visiblerequestmodification: false,
             data,
             searchText: '',
             searchInput: null,
             searchedColumn: '',
         };
     },
-    components: {
-        LoanFinancialInvoiceDetails,
-    },
     computed: {
         columns() {
             const columns = [
                 {
-                    title: 'Transaction Date',
-                    dataIndex: 'transactiondate',
-                    key: 'transactiondate',
+                    title: 'Loaned Worker',
+                    dataIndex: 'loanedworkerid',
+                    key: 'loanedworkerid',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.transactiondate
+                        record.loanedworkerid
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -133,16 +172,16 @@ export default {
                     },
                 },
                 {
-                    title: 'Invoice Number',
-                    dataIndex: 'invoicenumber',
-                    key: 'invoicenumber',
+                    title: 'Initial Date',
+                    dataIndex: 'initialdate',
+                    key: 'initialdate',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.invoicenumber
+                        record.initialdate
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -155,16 +194,16 @@ export default {
                     },
                 },
                 {
-                    title: 'Employee Name',
-                    dataIndex: 'employeename',
-                    key: 'employeename',
+                    title: 'Cut-off Date',
+                    dataIndex: 'cutoffdate',
+                    key: 'cutoffdate',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.employeename
+                        record.cutoffdate
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -177,16 +216,16 @@ export default {
                     },
                 },
                 {
-                    title: 'No of Hours Worked',
-                    dataIndex: 'noofhoursworked',
-                    key: 'noofhoursworked',
+                    title: 'Hourly Rate ($/hr)',
+                    dataIndex: 'rate',
+                    key: 'rate',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.noofhoursworked
+                        record.rate
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -199,16 +238,16 @@ export default {
                     },
                 },
                 {
-                    title: 'Billing rate',
-                    dataIndex: 'billingrate',
-                    key: 'billingrate',
+                    title: 'Rendered Hours',
+                    dataIndex: 'renderedhours',
+                    key: 'renderedhours',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.billingrate
+                        record.renderedhours
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -221,16 +260,38 @@ export default {
                     },
                 },
                 {
-                    title: 'Total Cost',
-                    dataIndex: 'totalcost',
-                    key: 'totalcost',
+                    title: 'Other Expenses',
+                    dataIndex: 'otherexpenses',
+                    key: 'otherexpenses',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.totalcost
+                        record.otherexpenses
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Total Bill',
+                    dataIndex: 'totalbill',
+                    key: 'totalbill',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.totalbill
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -288,6 +349,12 @@ export default {
         },
         handleCancel(e) {
             this.visible = false;
+        },
+        showModalRequestModification() {
+            this.visiblerequestmodification = true;
+        },
+        handleCancelRequestModification(e) {
+            this.visiblerequestmodification = false;
         },
     },
 }
