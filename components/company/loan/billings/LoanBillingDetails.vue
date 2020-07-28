@@ -2,11 +2,9 @@
     <div>
         <a-row>
             <a-col :lg="{ span: 24 }" :md="{ span: 24 }" :sm="{ span: 24 }">
-                <div class="text-right">
+                <div style="float: right">
                     <a-button>Print <a-icon type="printer"></a-icon></a-button>
                 </div>
-            </a-col>
-            <a-col :lg="{ span: 12 }" :md="{ span: 12 }" :sm="{ span: 24 }">
                 <div>
                     <b>Employee Name: </b> Steve Rogers <br /> 
                 </div>
@@ -19,7 +17,21 @@
         </a-row>
         <br />
         <a-row>
-
+            <a-col :lg="{ span: 24 }" :md="{ span: 24 }" :sm="{ span: 24 }">
+                <a-calendar>
+                    <div slot="dateCellRender" slot-scope="value" class="events">
+                        <span v-for="item in getListData(value)" :key="item.content">
+                            <p class="hoursworked">{{ item.hoursworkerd }} hours</p>
+                        </span>
+                    </div>
+                    <template slot="monthCellRender" slot-scope="value">
+                        <div v-if="getMonthData(value)" class="notes-month">
+                            <section>{{ getMonthData(value) }}</section>
+                            <span>Backlog number</span>
+                        </div>
+                    </template>
+                </a-calendar>
+            </a-col>
         </a-row>
         <br />
         <a-row>
@@ -28,9 +40,10 @@
                     <a-form-item>
                         <label>Other Expenses</label>
                         <a-input
-                            placeholder="Other Expenses"></a-input>
+                            placeholder="Other Expenses" />
                     </a-form-item>
-                    <label>Client Request Message</label>
+                    <label v-if="this.$store.state.action === 'resolve'">Client Request Message</label>
+                    <label v-else>Note</label>
                     <a-form-item>
                         <a-input type="textarea" rows="3" />
                     </a-form-item>
@@ -96,9 +109,54 @@
 <script>
 export default {
     name: "LoanBillingDetails",
+    methods: {
+        getListData(value) {
+            let listData;
+            switch (value.date()) {
+                case 20:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                case 21:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                case 22:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                case 23:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                case 24:
+                    listData = [
+                        { hoursworkerd: 8 },
+                    ];
+                    break;
+                default:
+            }
+            return listData || [];
+        },
+
+        getMonthData(value) {
+            if (value.month() === 8) {
+                return 1394;
+            }
+        },
+    },
 }
 </script>
 
-<style>
-
+<style scoped>
+.hoursworked {
+    color: #12109C;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+}
 </style>

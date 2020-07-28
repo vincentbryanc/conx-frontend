@@ -58,13 +58,26 @@
                     {{ text }}
                 </template>
             </template>
-            <span slot="action">
-                <a-button @click="showModal">Resolve</a-button>
-                <a-button>Update</a-button>
-                <a-button>Send</a-button>
+            <span slot="action" slot-scope="text, record">
+                <a-button @click="showModal(action = 'resolve')" v-if="record.status === 'Request Modification'">Resolve</a-button>
+                <a-button @click="showModal(action = 'update')" v-if="record.status === 'Pending' || record.status === 'Work in Progress'">Update</a-button>
+                <a-button v-if="record.status === 'Pending'">Send</a-button>
             </span>
         </a-table>
-        <a-modal v-model="visible" title="Billing Details" :width="750" :style="{ maxHeight: 100 }" :footer="null">
+        <a-modal v-model="visible" title="Billing Details" :width="1000" :style="{ maxHeight: 100 }">
+            <template slot="footer">
+                <a-button 
+                    key="back" 
+                    @click="handleCancel">Close</a-button>
+                <a-button 
+                    type="primary" 
+                    @click="handleCancel" 
+                    v-if="this.$store.state.action === 'resolve'">Resolve <a-icon type="check" /></a-button>
+                <a-button 
+                    type="primary" 
+                    @click="handleCancel" 
+                    v-if="this.$store.state.action === 'update'">Update Billing <a-icon type="check" /></a-button>
+            </template>
             <div>
                 <LoanBillingDetails />
             </div>
@@ -318,21 +331,46 @@ export default {
             clearFilters();
             this.searchText = '';
         },
-        showModal() {
+        showModal(action) {
             this.visible = true;
+            console.log(action);
+            if (action === 'resolve') 
+                this.$store.commit('actionresolve');
+            else if (action === 'update') 
+                this.$store.commit('actionupdate');
+
         },
         handleCancel(e) {
             this.visible = false;
         },
+        action() {
+            
+        }
     },
 }
 </script>
 
-<style>
-/* .ant-pagination-item {
-    display: none!important;
-} */
-.ant-modal-body {
-    padding: 24px 40px;
+<style scoped>
+.ant-fullcalendar-fullscreen .ant-fullcalendar-content {
+    height: 50px;
+}
+.events {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.events .ant-badge-status {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
+    font-size: 12px;
+}
+.notes-month {
+    text-align: center;
+    font-size: 28px;
+}
+.notes-month section {
+    font-size: 28px;
 }
 </style>

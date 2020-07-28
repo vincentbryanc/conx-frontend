@@ -69,7 +69,6 @@ export default {
     name: "LoanBillingSummary",
     data() {
         return {
-            visible: false,
             data,
             searchText: '',
             searchInput: null,
@@ -208,12 +207,6 @@ export default {
             clearFilters();
             this.searchText = '';
         },
-        showModal() {
-            this.visible = true;
-        },
-        handleCancel(e) {
-            this.visible = false;
-        },
     },
 }
 </script>
@@ -222,7 +215,4 @@ export default {
 /* .ant-pagination-item {
     display: none!important;
 } */
-.ant-modal-body {
-    padding: 24px 40px;
-}
 </style>
