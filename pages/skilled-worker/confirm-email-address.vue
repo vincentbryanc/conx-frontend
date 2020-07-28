@@ -13,10 +13,13 @@
                                 you an email with a link to verify your email address.
                             </p>
                             <br />
-                            <nuxt-link to="/skilled-worker/my-resume">
+                            <a-button
+                                type="primary"
+                                @click="$message.success('Email Successfully sent!')">Resend Email Confirmation</a-button>
+                            <br />
+                            <nuxt-link to="/">
                                 <a-button
-                                    type="primary"
-                                    @click="$message.success('Email Successfully sent!')">Resend Email Confirmation</a-button>
+                                    type="link">Back to Home</a-button>
                             </nuxt-link>
                         </a-card>
                     </a-col>
