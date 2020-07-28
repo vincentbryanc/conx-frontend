@@ -43,7 +43,7 @@
                                     v-if="current > 0" 
                                     style="margin-left: 8px"
                                     @click="prev"><a-icon type="left" /> Previous</a-button>
-                                <nuxt-link to='/'>
+                                <nuxt-link to='/admin/company-accounts'>
                                     <a-button 
                                         type="primary"
                                         v-if="current < 1">Back</a-button>
