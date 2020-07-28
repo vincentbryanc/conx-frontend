@@ -26,7 +26,7 @@
                 <a-modal v-model="visible" title="Add User" on-ok="handleOk" :width="700">
                     <template slot="footer">
                         <a-button key="back" @click="handleCancel">Close</a-button>
-                        <a-button type="success" @click="handleCancel">Update <a-icon type="check" /></a-button>
+                        <a-button type="success" @click="handleCancel">Save <a-icon type="check" /></a-button>
                     </template>
                     <div>
                         <a-form>
