@@ -32,7 +32,7 @@
                         </a-col>
                         <a-col :lg="{ span: 14, offset: 2 }" :md="{ span: 14, offset: 2 }" :sm="{ span: 24 }">
                             <h1 class="title">Work History</h1>
-                            <WorkHistory />
+                            <EmployeeWorkHistory />
                         </a-col>
                     </a-row>
                 </a-layout-content>
