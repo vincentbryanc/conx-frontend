@@ -14,9 +14,9 @@
                         <a-button type="primary"><a-icon type="arrow-left" />Back</a-button>
                     </nuxt-link>
                     <br /><br />
-                    <a-collapse default-active-key="company-information" :bordered="false">
+                    <a-collapse default-active-key="company-information" :bordered="false" :expand-icon-position="expandIconPosition" :destroyInactivePanel="true">
                         <a-collapse-panel key="company-information" header="Company Information">
-                            <a-button slot="extra" type="primary">Edit <a-icon type="edit" /></a-button>
+                            <!-- <a-button slot="extra" type="primary">Edit <a-icon type="edit" /></a-button> -->
                             <a-row>
                                 <a-col :lg="{ span: 8, offset: 1 }" :md="{ span: 11, offset: 1 }" :sm="{ span: 24 }">
                                     <p><b>Company Name</b> <span>Stark Industries</span></p>
@@ -82,6 +82,11 @@ export default {
         AppFooter,
         CompanyUsers,
         CompanyEmployees,
+    },
+    data() {
+        return {
+            expandIconPosition: 'right',
+        };
     },
 }
 </script>

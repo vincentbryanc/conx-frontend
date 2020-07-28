@@ -60,13 +60,13 @@ const data = [
         key: '1',
         name: 'Steve Jobs',
         emailaddress: 'steve.jobs@aov.com',
-        Role: 'Admin',
+        role: 'Admin',
     },
     {
         key: '2',
         name: 'Bill Gates',
         emailaddress: 'bill.gates@aov.com',
-        Role: 'Manager',
+        role: 'Manager',
     },
 ];
 

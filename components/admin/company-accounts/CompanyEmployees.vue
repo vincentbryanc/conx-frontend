@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <p><b>No. of Employees: </b> <span>9</span></p>
+            <p><b>No. of Employees: </b> <span>8</span></p>
             <p><b>No. of Loaned Employees: </b> <span>3</span></p>
             <p><b>No. of Borrowed Employees: </b> <span>3</span></p>
         </div>

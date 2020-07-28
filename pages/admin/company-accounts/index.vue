@@ -12,10 +12,12 @@
                     <div>
                         <h1 class="title">Company Accounts</h1>
                         <div class="text-right">
-                            <a-button 
-                                type="primary">
-                                Add Company <a-icon type="plus" />
-                            </a-button>
+                            <nuxt-link to="/admin/company-accounts/add-company">
+                                <a-button 
+                                    type="primary">
+                                    Add Company <a-icon type="plus" />
+                                </a-button>
+                            </nuxt-link>
                         </div>
                     </div>
                     <div>

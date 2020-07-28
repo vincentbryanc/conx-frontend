@@ -48,6 +48,7 @@
             </template>
             <span slot="action">
                 <nuxt-link to="/admin/company-accounts/company-information"><a-button>View <a-icon type="eye" /></a-button></nuxt-link>
+                <nuxt-link to="/admin/company-accounts/edit-company"><a-button>Edit <a-icon type="edit" /></a-button></nuxt-link>
                 <a-button type="danger">Ban <a-icon type="close" /></a-button>
             </span>
         </a-table>
@@ -112,7 +113,7 @@ export default {
                             });
                         }
                     },
-                    
+                    width: '15%',
                 },
                 {
                     title: 'Subscription Expiration',
@@ -135,6 +136,7 @@ export default {
                             });
                         }
                     },
+                    width: '15%',
                 },
                 {
                     title: 'Signup Status',
@@ -199,6 +201,7 @@ export default {
                     title: 'Action',
                     key: 'action',
                     scopedSlots: { customRender: 'action' },
+                    width: '25%',
                 },
             ];
             return columns;
