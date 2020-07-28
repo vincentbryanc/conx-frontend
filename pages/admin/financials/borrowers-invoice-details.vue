@@ -6,24 +6,11 @@
             <a-layout :style="{ padding: '0 24px 24px' }">
                 <a-breadcrumb :style="{ margin: '16px 0' }">
                     <a-breadcrumb-item>Administrator</a-breadcrumb-item>
-                    <a-breadcrumb-item>Company Accounts</a-breadcrumb-item>
+                    <a-breadcrumb-item>Financials</a-breadcrumb-item>
+                    <a-breadcrumb-item>Borrowers Invoice</a-breadcrumb-item>
+                    <a-breadcrumb-item>Invoice Details</a-breadcrumb-item>
                 </a-breadcrumb>
-                <a-layout-content class="layout-content">
-                    <div>
-                        <h1 class="title">Company Accounts</h1>
-                        <div class="text-right">
-                            <nuxt-link to="/admin/company-accounts/add-company">
-                                <a-button 
-                                    type="primary">
-                                    Add Company <a-icon type="plus" />
-                                </a-button>
-                            </nuxt-link>
-                        </div>
-                    </div>
-                    <div>
-                        <CompanyAccounts />
-                    </div>
-                </a-layout-content>
+                <BorrowersInvoiceDetails />
             </a-layout>
         </a-layout>
         <AppFooter />
@@ -34,12 +21,12 @@
 import AppHeader from '../../../components/admin/AppHeader';
 import AppSider from '../../../components/admin/AppSider';
 import AppFooter from '../../../components/AppFooter';
-import CompanyAccounts from '../../../components/admin/company-accounts/CompanyAccounts';
+import BorrowersInvoiceDetails from '../../../components/admin/financials/BorrowersInvoiceDetails';
 
 export default {
     head() {
         return {
-            title: 'Company Accounts',
+            title: 'Borrowers Invoice Details',
             meta: [
                 {
                     hid: 'description',
@@ -53,7 +40,7 @@ export default {
         AppHeader,
         AppSider,
         AppFooter,
-        CompanyAccounts,
+        BorrowersInvoiceDetails,
     },
 }
 </script>
