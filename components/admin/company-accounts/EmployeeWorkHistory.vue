@@ -69,122 +69,122 @@
 </template>
 
 <script>
-    const data = [
-        {
-            key: '1',
-            dateworked: 'July 20, 2020 - July 24, 2020',
-            companyname: 'Stark Industries',
-            totalamountrendered: '$3,400.00',
-        },
-    ];
-    export default {
-        name: "EmployeeWorkHistory",
-        data() {
-            return {
-                visible: false,
-                data,
-                searchText: '',
-                searchInput: null,
-                searchedColumn: '',
-            };
-        },
-        computed: {
-            columns() {
-                const columns = [
-                    {
-                        title: 'Date Worked',
-                        dataIndex: 'dateworked',
-                        key: 'dateworked',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.dateworked
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                        
+const data = [
+    {
+        key: '1',
+        dateworked: 'July 20, 2020 - July 24, 2020',
+        companyname: 'Stark Industries',
+        totalamountrendered: '$3,400.00',
+    },
+];
+export default {
+    name: "EmployeeWorkHistory",
+    data() {
+        return {
+            visible: false,
+            data,
+            searchText: '',
+            searchInput: null,
+            searchedColumn: '',
+        };
+    },
+    computed: {
+        columns() {
+            const columns = [
+                {
+                    title: 'Date Worked',
+                    dataIndex: 'dateworked',
+                    key: 'dateworked',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
                     },
-                    {
-                        title: 'Company Name',
-                        dataIndex: 'companyname',
-                        key: 'companyname',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.companyname
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
+                    onFilter: (value, record) =>
+                        record.dateworked
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
                     },
-                    {
-                        title: 'Total Amount Rendered',
-                        dataIndex: 'totalamountrendered',
-                        key: 'totalamountrendered',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.totalamountrendered
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
+                    
+                },
+                {
+                    title: 'Company Name',
+                    dataIndex: 'companyname',
+                    key: 'companyname',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
                     },
-                    {
-                        title: 'Action',
-                        key: 'action',
-                        scopedSlots: { customRender: 'action' },
+                    onFilter: (value, record) =>
+                        record.companyname
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
                     },
-                ];
-                return columns;
-            },
+                },
+                {
+                    title: 'Total Amount Rendered',
+                    dataIndex: 'totalamountrendered',
+                    key: 'totalamountrendered',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.totalamountrendered
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Action',
+                    key: 'action',
+                    scopedSlots: { customRender: 'action' },
+                },
+            ];
+            return columns;
         },
-        methods: {
-            handleSearch(selectedKeys, confirm, dataIndex) {
-                confirm();
-                this.searchText = selectedKeys[0];
-                this.searchedColumn = dataIndex;
-            },
-            handleReset(clearFilters) {
-                clearFilters();
-                this.searchText = '';
-            },
-            showModal() {
-                this.visible = true;
-            },
-            handleCancel(e) {
-                this.visible = false;
-            },
+    },
+    methods: {
+        handleSearch(selectedKeys, confirm, dataIndex) {
+            confirm();
+            this.searchText = selectedKeys[0];
+            this.searchedColumn = dataIndex;
         },
-    }
+        handleReset(clearFilters) {
+            clearFilters();
+            this.searchText = '';
+        },
+        showModal() {
+            this.visible = true;
+        },
+        handleCancel(e) {
+            this.visible = false;
+        },
+    },
+}
 </script>
 
 <style>
