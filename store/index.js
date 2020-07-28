@@ -1,7 +1,8 @@
 export const state = () => ({
     collapsed: false,
-    defaultselectedkey: 'company-employees',
+    defaultselectedkey: '',
     defaultopenkey: '',
+    defaultselectedtab: '',
     action: '',
 });
 

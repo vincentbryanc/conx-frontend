@@ -67,6 +67,12 @@ export default {
         AppFooter,
         WorkHistory,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'company-employees',
+            openkey: '',
+        });
+    }
 }
 </script>
 

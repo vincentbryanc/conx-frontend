@@ -14,11 +14,11 @@
                         <h1 class="title">Billings</h1>
                     </div>
                     <div>
-                        <a-tabs default-active-key="1">
-                            <a-tab-pane key="1" tab="Summary">
+                        <a-tabs default-active-key="client-invoice">
+                            <a-tab-pane key="summary" tab="Summary">
                                 <LoanBillingSummary />
                             </a-tab-pane>
-                            <a-tab-pane key="2" tab="Client Invoice" force-render>
+                            <a-tab-pane key="client-invoice" tab="Client Invoice" force-render>
                                 <LoanBillingClientInvoice />
                             </a-tab-pane>
                         </a-tabs>
