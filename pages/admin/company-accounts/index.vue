@@ -55,6 +55,12 @@ export default {
         AppFooter,
         CompanyAccounts,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'company-accounts',
+            openkey: '',
+        });
+    }
 }
 </script>
 

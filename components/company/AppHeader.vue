@@ -31,11 +31,11 @@
 <script>
 export default {
     name: "AppHeader",
-    methods: {
-        toggleSidebar() {
-            this.$store.commit('toggleSidebar');
-        }
-    }
+    // methods: {
+    //     toggleSidebar() {
+    //         this.$store.commit('toggleSidebar');
+    //     }
+    // }
 };
 </script>
 

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env NUXT_HOST=192.168.0.0 NUXT_PORT=3333 nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "export": "nuxt export",
@@ -15,6 +15,7 @@
     "nuxt": "^2.13.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "less": "^3.12.2",
     "less-loader": "^6.2.0"
   }

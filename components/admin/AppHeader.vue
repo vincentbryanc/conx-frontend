@@ -22,7 +22,7 @@
                         Profile
                     </a-menu-item>
                     <a-menu-item key="logout">
-                        <nuxt-link to="/">Logout</nuxt-link>
+                        <nuxt-link to="/admin">Logout</nuxt-link>
                     </a-menu-item>
                 </a-sub-menu>
         </a-menu>
