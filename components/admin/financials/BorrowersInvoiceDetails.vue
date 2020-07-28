@@ -239,12 +239,12 @@ export default {
 </script>
 
 <style scoped>
-    .ant-form-item {
-        margin-bottom: 5px;
-    }
+.ant-form-item {
+    margin-bottom: 5px;
+}
 
-    .layout-content {
-        min-height: auto;
-        margin-bottom: 20px;
-    }
+.layout-content {
+    min-height: auto;
+    margin-bottom: 20px;
+}
 </style>
