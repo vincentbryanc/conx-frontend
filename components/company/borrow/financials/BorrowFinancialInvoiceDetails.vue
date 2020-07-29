@@ -130,7 +130,7 @@ const data = [
     },
 ];
 export default {
-    name: "LoanFinancialInvoiceDetails",
+    name: "BorrowFinancialInvoiceDetails",
     data() {
         return {
             data,

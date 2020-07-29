@@ -1,6 +1,7 @@
 <template>
     <div>
-        <a-table :data-source="data" :columns="columns" :row-selection="rowSelection" :pagination="false">
+        <br />
+        <a-table :data-source="data" :columns="columns">
             <div
                 slot="filterDropdown"
                 slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -46,54 +47,80 @@
                     {{ text }}
                 </template>
             </template>
+            <span slot="action">
+                <a-button @click="showModal">View <a-icon type="eye"></a-icon></a-button>
+            </span>
         </a-table>
+        <a-modal v-model="visible" title="Invoice" :width="750" :style="{ maxHeight: 100 }" :footer="null">
+            <div>
+                <BorrowFinancialInvoiceDetails />
+            </div>
+        </a-modal>
     </div>
 </template>
 
 <script>
-import ListOfRequestedEmployees from './ListOfRequestedEmployees';
+import BorrowFinancialInvoiceDetails from './BorrowFinancialInvoiceDetails';
 const data = [
     {
         key: '1',
-        employeeid: 'AOV00001',
-        levelofexperience: 'Master',
-        areaofwork: 'Commercial, Industrial, Residential',
-        zipcode: '95035',
-        hourlyrate: '$85',
+        transactiondate: 'July 24, 2020 10:00AM',
+        invoicenumber: 'IVN-07242020-003',
+        employeename: 'Steve Rogers',
+        noofhoursworked: '40',
+        billingrate: '$85',
+        totalcost: '$4,114.00',
+        status: 'Waiting for Payment',
     },
     {
         key: '2',
-        employeeid: 'AOV00002',
-        levelofexperience: 'Master',
-        areaofwork: 'Industrial, Fire Alarm, Security',
-        zipcode: '95035',
-        hourlyrate: '$60',
+        transactiondate: 'July 20, 2020 01:00PM',
+        invoicenumber: 'IVN-07242020-002',
+        employeename: 'Rylan Bain',
+        noofhoursworked: '40',
+        billingrate: '$100',
+        totalcost: '$4,840.00',
+        status: 'Payment Received',
+    },
+    {
+        key: '3',
+        transactiondate: 'July 20, 2020 02:00PM',
+        invoicenumber: 'IVN-07242020-001',
+        employeename: 'Gail Vo',
+        noofhoursworked: '40',
+        billingrate: '$100',
+        totalcost: '$4,840.00',
+        status: 'Disbursed',
     },
 ];
 export default {
-    name: "ListOfRequestedEmployees",
+    name: "BorrowFinancials",
     data() {
         return {
+            visible: false,
             data,
             searchText: '',
             searchInput: null,
             searchedColumn: '',
         };
     },
+    components: {
+        BorrowFinancialInvoiceDetails,
+    },
     computed: {
         columns() {
             const columns = [
                 {
-                    title: 'Employee ID',
-                    dataIndex: 'employeeid',
-                    key: 'employeeid',
+                    title: 'Transaction Date',
+                    dataIndex: 'transactiondate',
+                    key: 'transactiondate',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.employeeid
+                        record.transactiondate
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -106,16 +133,16 @@ export default {
                     },
                 },
                 {
-                    title: 'Level of Experience',
-                    dataIndex: 'levelofexperience',
-                    key: 'contactname',
+                    title: 'Invoice Number',
+                    dataIndex: 'invoicenumber',
+                    key: 'invoicenumber',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.levelofexperience
+                        record.invoicenumber
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -128,16 +155,16 @@ export default {
                     },
                 },
                 {
-                    title: 'Area of Work',
-                    dataIndex: 'areaofwork',
-                    key: 'areaofwork',
+                    title: 'Employee Name',
+                    dataIndex: 'employeename',
+                    key: 'employeename',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.areaofwork
+                        record.employeename
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -150,16 +177,16 @@ export default {
                     },
                 },
                 {
-                    title: 'Zip Code',
-                    dataIndex: 'zipcode',
-                    key: 'zipcode',
+                    title: 'No of Hours Worked',
+                    dataIndex: 'noofhoursworked',
+                    key: 'noofhoursworked',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.zipcode
+                        record.noofhoursworked
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -172,16 +199,16 @@ export default {
                     },
                 },
                 {
-                    title: 'Hourly Rate ($/hr)',
-                    dataIndex: 'hourlyrate',
-                    key: 'hourlyrate',
+                    title: 'Billing rate',
+                    dataIndex: 'billingrate',
+                    key: 'billingrate',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
                         customRender: 'customRender',
                     },
                     onFilter: (value, record) =>
-                        record.hourlyrate
+                        record.billingrate
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),
@@ -192,22 +219,58 @@ export default {
                             });
                         }
                     },
+                },
+                {
+                    title: 'Total Cost',
+                    dataIndex: 'totalcost',
+                    key: 'totalcost',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.totalcost
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Status',
+                    dataIndex: 'status',
+                    key: 'status',
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.status
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Action',
+                    key: 'action',
+                    scopedSlots: { customRender: 'action' },
                 },
             ];
             return columns;
-        },
-        rowSelection() {
-            return {
-                onChange: (selectedRowKeys, selectedRows) => {
-                    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-                },
-                getCheckboxProps: record => ({
-                    props: {
-                        disabled: record.name === 'Disabled User', // Column configuration not to be checked
-                        name: record.name,
-                    },
-                }),
-            };
         },
     },
     methods: {

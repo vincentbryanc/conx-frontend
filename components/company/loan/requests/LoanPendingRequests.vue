@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import ListOfRequestedEmployees from './ListOfRequestedEmployees';
+import ListOfRequestedEmployees from './LoanRequestListOfRequestedEmployees';
 const data = [
     {
         key: '1',

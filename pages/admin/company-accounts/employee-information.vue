@@ -46,7 +46,7 @@
 import AppHeader from '../../../components/admin/AdminHeader';
 import AppSider from '../../../components/admin/AdminSider';
 import AppFooter from '../../../components/AppFooter';
-import EmployeeWorkHistory from '../../../components/admin/company-accounts/EmployeeWorkHistory';
+import EmployeeWorkHistory from '../../../components/admin/company-accounts/AdminCompanyEmployeeWorkHistory';
 
 export default {
     head() {

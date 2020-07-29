@@ -34,7 +34,7 @@
 import AppHeader from '../../../components/admin/AdminHeader';
 import AppSider from '../../../components/admin/AdminSider';
 import AppFooter from '../../../components/AppFooter';
-import CompanyAccounts from '../../../components/admin/company-accounts/CompanyAccounts';
+import CompanyAccounts from '../../../components/admin/company-accounts/AdminCompanyAccounts';
 
 export default {
     head() {

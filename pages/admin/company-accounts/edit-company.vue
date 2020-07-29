@@ -73,9 +73,9 @@
 import AppHeader from '../../../components/admin/AdminHeader';
 import AppSider from '../../../components/admin/AdminSider';
 import AppFooter from '../../../components/AppFooter';
-import CompanyAccountInformation from '../../../components/admin/company-accounts/edit-company/CompanyAccountInformation';
-import CompanyDetails from '../../../components/admin/company-accounts/edit-company/CompanyDetails';
-import CompanySummary from '../../../components/admin/company-accounts/edit-company/CompanySummary';
+import CompanyAccountInformation from '../../../components/admin/company-accounts/edit-company/AdminEditCompanyAccountInformation';
+import CompanyDetails from '../../../components/admin/company-accounts/edit-company/AdminEditCompanyDetails';
+import CompanySummary from '../../../components/admin/company-accounts/edit-company/AdminEditCompanySummary';
 
 export default {
     head() {

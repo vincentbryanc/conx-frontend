@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import ListOfRequestedEmployees from './ListOfRequestedEmployees';
+import ListOfRequestedEmployees from './BorrowRequestListOfRequestedEmployees';
 const data = [
     {
         key: '1',

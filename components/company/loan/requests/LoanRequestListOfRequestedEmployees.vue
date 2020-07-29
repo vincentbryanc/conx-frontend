@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import ListOfRequestedEmployees from './ListOfRequestedEmployees';
 const data = [
     {
         key: '1',
@@ -73,7 +72,7 @@ const data = [
     },
 ];
 export default {
-    name: "ListOfRequestedEmployees",
+    name: "LoanRequestListOfRequestedEmployees",
     data() {
         return {
             data,

@@ -14,7 +14,7 @@
                         <h1 class="title">List of Approved Invoices</h1>
                     </div>
                     <div>
-                        <LoanFinancials />
+                        <BorrowFinancials />
                     </div>
                 </a-layout-content>
             </a-layout>
@@ -27,12 +27,12 @@
 import AppHeader from '../../../../components/company/CompanyHeader';
 import AppSider from '../../../../components/company/CompanySider';
 import AppFooter from '../../../../components/AppFooter';
-import LoanFinancials from '../../../../components/company/loan/financials/LoanFinancials';
+import BorrowFinancials from '../../../../components/company/borrow/financials/BorrowFinancials';
 
 export default {
     head() {
         return {
-            title: 'Company Loan Financials',
+            title: 'Company Borrow Financials',
             meta: [
                 {
                     hid: 'description',
@@ -46,7 +46,7 @@ export default {
         AppHeader,
         AppSider,
         AppFooter,
-        LoanFinancials,
+        BorrowFinancials,
     },
 }
 </script>

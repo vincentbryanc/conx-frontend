@@ -61,8 +61,8 @@
 import AppHeader from '../../../components/admin/AdminHeader';
 import AppSider from '../../../components/admin/AdminSider';
 import AppFooter from '../../../components/AppFooter';
-import CompanyUsers from '../../../components/admin/company-accounts/CompanyUsers';
-import CompanyEmployees from '../../../components/admin/company-accounts/CompanyEmployees';
+import CompanyUsers from '../../../components/admin/company-accounts/AdminCompanyUsers';
+import CompanyEmployees from '../../../components/admin/company-accounts/AdminCompanyEmployees';
 export default {
     head() {
         return {
