@@ -162,7 +162,7 @@
     ];
     
     export default {
-        name: "Users",
+        name: "CompanyUsers",
         data() {
             return {
                 visible: false,

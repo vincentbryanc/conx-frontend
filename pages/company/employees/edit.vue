@@ -173,8 +173,8 @@
 </template>
 
 <script>
-import AppHeader from '../../../components/company/AppHeader';
-import AppSider from '../../../components/company/AppSider';
+import AppHeader from '../../../components/company/CompanyHeader';
+import AppSider from '../../../components/company/CompanySider';
 import AppFooter from '../../../components/AppFooter';
 
 export default {

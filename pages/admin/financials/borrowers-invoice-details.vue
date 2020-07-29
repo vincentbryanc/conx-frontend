@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import AppHeader from '../../../components/admin/AppHeader';
-import AppSider from '../../../components/admin/AppSider';
+import AppHeader from '../../../components/admin/AdminHeader';
+import AppSider from '../../../components/admin/AdminSider';
 import AppFooter from '../../../components/AppFooter';
 import BorrowersInvoiceDetails from '../../../components/admin/financials/BorrowersInvoiceDetails';
 

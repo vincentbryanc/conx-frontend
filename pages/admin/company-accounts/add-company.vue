@@ -71,8 +71,8 @@
 </template>
 
 <script>
-import AppHeader from '../../../components/admin/AppHeader';
-import AppSider from '../../../components/admin/AppSider';
+import AppHeader from '../../../components/admin/AdminHeader';
+import AppSider from '../../../components/admin/AdminSider';
 import AppFooter from '../../../components/AppFooter';
 import CompanyAccountInformation from '../../../components/admin/company-accounts/add-company/CompanyAccountInformation';
 import CompanyDetails from '../../../components/admin/company-accounts/add-company/CompanyDetails';

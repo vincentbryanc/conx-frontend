@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import AppHeader from '../../../../components/company/AppHeader';
-import AppSider from '../../../../components/company/AppSider';
+import AppHeader from '../../../../components/company/CompanyHeader';
+import AppSider from '../../../../components/company/CompanySider';
 import AppFooter from '../../../../components/AppFooter';
 import BorrowPendingRequests from '../../../../components/company/borrow/requests/BorrowPendingRequests';
 import BorrowApprovedRequests from '../../../../components/company/borrow/requests/BorrowApprovedRequests';

@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div>
-                        <Users />
+                        <CompanyUsers />
                     </div>
                 </a-layout-content>
                 <a-modal v-model="visible" title="Add User" on-ok="handleOk" :width="700">
@@ -121,10 +121,10 @@
 </template>
 
 <script>
-import AppHeader from '../../../components/company/AppHeader';
-import AppSider from '../../../components/company/AppSider';
+import AppHeader from '../../../components/company/CompanyHeader';
+import AppSider from '../../../components/company/CompanySider';
 import AppFooter from '../../../components/AppFooter';
-import Users from '../../../components/company/users/Users';
+import CompanyUsers from '../../../components/company/users/CompanyUsers';
 
 export default {
     head() {
