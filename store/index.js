@@ -14,6 +14,9 @@ export const mutations = {
         state.defaultselectedkey = payload.selectedkey;
         state.defaultopenkey = payload.openkey;
     },
+    changedefaultselectedtab(state, payload) {
+        state.defaultselectedtab = payload.selectedkey;
+    },
     actionresolve(state) {
         state.action = 'resolve';
     },

@@ -14,7 +14,7 @@
                         <h1 class="title">Billings</h1>
                     </div>
                     <div>
-                        <a-tabs default-active-key="client-invoice">
+                        <a-tabs :defaultActiveKey="this.$store.state.defaultselectedtab">
                             <a-tab-pane key="summary" tab="Summary">
                                 <LoanBillingSummary />
                             </a-tab-pane>
@@ -57,6 +57,11 @@ export default {
         LoanBillingSummary,
         LoanBillingClientInvoice,
     },
+    created() {
+        this.$store.commit('changedefaultselectedtab', {
+            selectedkey: 'summary',
+        });
+    }
 }
 </script>
 

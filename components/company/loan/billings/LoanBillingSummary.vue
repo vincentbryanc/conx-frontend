@@ -48,7 +48,7 @@
                 </template>
             </template>
             <span slot="action">
-                <a-button>View <a-icon type="eye"></a-icon></a-button>
+                <a-button @click="showClientInvoice">View <a-icon type="eye"></a-icon></a-button>
             </span>
         </a-table>
     </div>
@@ -206,6 +206,11 @@ export default {
         handleReset(clearFilters) {
             clearFilters();
             this.searchText = '';
+        },
+        showClientInvoice() {
+            this.$store.commit('changedefaultselectedtab', {
+                selectedkey: 'client-invoice',
+            });
         },
     },
 }
