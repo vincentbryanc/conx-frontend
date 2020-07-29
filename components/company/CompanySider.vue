@@ -10,7 +10,7 @@
                 <a-sub-menu key="loan">
                     <span slot="title"><a-icon type="project" /><span>Loan</span></span>
                     <a-menu-item key="loan-requests">
-                        <nuxt-link to="/company/loan/requests">
+                        <nuxt-link to="/company/loan/pending-requests">
                             Requests
                         </nuxt-link>
                     </a-menu-item>
