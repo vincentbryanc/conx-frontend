@@ -17,19 +17,13 @@
         </a-row>
         <br />
         <a-row>
-            <a-col :lg="{ span: 24 }" :md="{ span: 24 }" :sm="{ span: 24 }">
+            <a-col :lg="{ span: 22, offset: 1 }" :md="{ span: 22, offset: 1 }" :sm="{ span: 24 }">
                 <a-calendar>
                     <div slot="dateCellRender" slot-scope="value" class="events">
                         <span v-for="item in getListData(value)" :key="item.content">
-                            <p class="hoursworked">{{ item.hoursworkerd }} hours</p>
+                            <p class="hoursworked" @click="showModal">{{ item.hoursworked }} hours</p>
                         </span>
                     </div>
-                    <template slot="monthCellRender" slot-scope="value">
-                        <div v-if="getMonthData(value)" class="notes-month">
-                            <section>{{ getMonthData(value) }}</section>
-                            <span>Backlog number</span>
-                        </div>
-                    </template>
                 </a-calendar>
             </a-col>
         </a-row>
@@ -103,50 +97,75 @@
                 </a-col>
             </a-col>
         </a-row>
+        <a-modal v-model="visible" title="Edit Hours Worked" :width="380" centered>
+            <template slot="footer">
+                <a-button 
+                    key="back" 
+                    @click="handleCancel">Close</a-button>
+                <a-button 
+                    type="primary" 
+                    @click="handleCancel">Update <a-icon type="check" /></a-button>
+            </template>
+            <div>
+                <label>Hours Worked</label>
+                <a-input
+                    type="number"
+                    v-decorator="[
+                        'hoursworked', { rules: [{ required: true, message: 'This field is required' }] },
+                    ]"
+                    placeholder="Hours Worked"
+                    value="8" />
+            </div>
+        </a-modal>
     </div>
 </template>
 
 <script>
 export default {
     name: "LoanBillingDetails",
+    data() {
+        return {
+            visible: false,
+        };
+    },
     methods: {
         getListData(value) {
             let listData;
             switch (value.date()) {
                 case 20:
                     listData = [
-                        { hoursworkerd: 8 },
+                        { hoursworked: 8 },
                     ];
                     break;
                 case 21:
                     listData = [
-                        { hoursworkerd: 8 },
+                        { hoursworked: 8 },
                     ];
                     break;
                 case 22:
                     listData = [
-                        { hoursworkerd: 8 },
+                        { hoursworked: 8 },
                     ];
                     break;
                 case 23:
                     listData = [
-                        { hoursworkerd: 8 },
+                        { hoursworked: 8 },
                     ];
                     break;
                 case 24:
                     listData = [
-                        { hoursworkerd: 8 },
+                        { hoursworked: 8 },
                     ];
                     break;
                 default:
             }
             return listData || [];
         },
-
-        getMonthData(value) {
-            if (value.month() === 8) {
-                return 1394;
-            }
+        showModal(action) {
+            this.visible = true;
+        },
+        handleCancel(e) {
+            this.visible = false;
         },
     },
 }

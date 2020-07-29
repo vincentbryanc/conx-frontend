@@ -24,12 +24,6 @@
                             <p class="hoursworked">{{ item.hoursworkerd }} hours</p>
                         </span>
                     </div>
-                    <template slot="monthCellRender" slot-scope="value">
-                        <div v-if="getMonthData(value)" class="notes-month">
-                            <section>{{ getMonthData(value) }}</section>
-                            <span>Backlog number</span>
-                        </div>
-                    </template>
                 </a-calendar>
             </a-col>
         </a-row>
@@ -103,6 +97,26 @@
                 </a-col>
             </a-col>
         </a-row>
+        <a-modal v-model="visible" title="Edit Hours Worked" :width="380" centered>
+            <template slot="footer">
+                <a-button 
+                    key="back" 
+                    @click="handleCancel">Close</a-button>
+                <a-button 
+                    type="primary" 
+                    @click="handleCancel">Update <a-icon type="check" /></a-button>
+            </template>
+            <div>
+                <label>Hours Worked</label>
+                <a-input
+                    type="number"
+                    v-decorator="[
+                        'hoursworked', { rules: [{ required: true, message: 'This field is required' }] },
+                    ]"
+                    placeholder="Hours Worked"
+                    value="8" />
+            </div>
+        </a-modal>
     </div>
 </template>
 

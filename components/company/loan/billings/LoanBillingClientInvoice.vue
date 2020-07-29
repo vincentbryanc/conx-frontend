@@ -343,17 +343,11 @@ export default {
         handleCancel(e) {
             this.visible = false;
         },
-        action() {
-            
-        }
     },
 }
 </script>
 
 <style scoped>
-.ant-fullcalendar-fullscreen .ant-fullcalendar-content {
-    height: 50px;
-}
 .events {
     list-style: none;
     margin: 0;
