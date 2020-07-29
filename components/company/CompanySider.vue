@@ -15,7 +15,7 @@
                         </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="loan-billings">
-                        <nuxt-link to="/company/loan/billings">
+                        <nuxt-link to="/company/loan/billing-summary">
                             Billings
                         </nuxt-link>
                     </a-menu-item>
@@ -48,7 +48,7 @@
                         </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="borrow-billings">
-                        <nuxt-link to="/company/borrow/billings">
+                        <nuxt-link to="/company/borrow/billing-summary">
                             Billings
                         </nuxt-link>
                     </a-menu-item>
@@ -66,7 +66,7 @@
                 </a-menu-item>
             </a-menu-item-group>
             <a-menu-item-group key="company" title="Company" :style="{ marginTop: '25px' }">
-                <a-menu-item key="company-employees" @click="changedefaultselectedkeyandopenkey('company-employees', '')">
+                <a-menu-item key="company-employees">
                     <nuxt-link to="/company/employees">
                         <a-icon type="contacts" />
                         <span>Employees</span>

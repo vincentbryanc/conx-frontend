@@ -48,7 +48,7 @@
                 </template>
             </template>
             <span slot="action">
-                <a-button>View <a-icon type="eye"></a-icon></a-button>
+                <a-button @click="showClientInvoice">View <a-icon type="eye"></a-icon></a-button>
             </span>
         </a-table>
     </div>
@@ -190,6 +190,9 @@ export default {
         },
         handleCancel(e) {
             this.visible = false;
+        },
+        showClientInvoice() {
+            this.$router.push('/company/borrow/billing-invoice');
         },
     },
 }

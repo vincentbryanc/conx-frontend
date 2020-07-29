@@ -6,7 +6,7 @@
             <a-layout :style="{ padding: '0 24px 24px' }">
                 <a-breadcrumb :style="{ margin: '16px 0' }">
                     <a-breadcrumb-item>Company Name</a-breadcrumb-item>
-                    <a-breadcrumb-item>Loan</a-breadcrumb-item>
+                    <a-breadcrumb-item>Borrow</a-breadcrumb-item>
                     <a-breadcrumb-item>Billings</a-breadcrumb-item>
                 </a-breadcrumb>
                 <a-layout-content class="layout-content">
@@ -14,12 +14,12 @@
                         <h1 class="title">Billings</h1>
                     </div>
                     <div>
-                        <a-tabs :defaultActiveKey="this.$store.state.defaultselectedtab">
-                            <a-tab-pane key="summary" tab="Summary">
-                                <LoanBillingSummary />
+                        <a-tabs default-active-key="billing-invoice" @change="callback">
+                            <a-tab-pane key="billing-summary" tab="Summary">
+                                <BorrowBillingSummary />
                             </a-tab-pane>
-                            <a-tab-pane key="client-invoice" tab="Client Invoice" force-render>
-                                <LoanBillingClientInvoice />
+                            <a-tab-pane key="billing-invoice" tab="Billing Invoice" force-render>
+                                <BorrowBillingInvoice />
                             </a-tab-pane>
                         </a-tabs>
                     </div>
@@ -31,11 +31,11 @@
 </template>
 
 <script>
-import AppHeader from '../../../../components/company/CompanyHeader';
-import AppSider from '../../../../components/company/CompanySider';
-import AppFooter from '../../../../components/AppFooter';
-import LoanBillingSummary from '../../../../components/company/loan/billings/LoanBillingSummary';
-import LoanBillingClientInvoice from '../../../../components/company/loan/billings/LoanBillingClientInvoice';
+import AppHeader from '../../../components/company/CompanyHeader';
+import AppSider from '../../../components/company/CompanySider';
+import AppFooter from '../../../components/AppFooter';
+import BorrowBillingSummary from '../../../components/company/borrow/billings/BorrowBillingSummary';
+import BorrowBillingInvoice from '../../../components/company/borrow/billings/BorrowBillingInvoice';
 
 export default {
     head() {
@@ -54,19 +54,20 @@ export default {
         AppHeader,
         AppSider,
         AppFooter,
-        LoanBillingSummary,
-        LoanBillingClientInvoice,
+        BorrowBillingSummary,
+        BorrowBillingInvoice,
     },
     created() {
         this.$store.commit('changedefaultselectedkeyandopenkey', {
-            selectedkey: 'loan-billings',
-            openkey: 'loan',
+            selectedkey: 'borrow-billings',
+            openkey: 'borrow',
         });
-
-        this.$store.commit('changedefaultselectedtab', {
-            selectedkey: 'summary',
-        });
-    }
+    },
+    methods: {
+        callback(key) {
+            this.$router.push('/company/borrow/' + key);
+        }
+    },
 }
 </script>
 

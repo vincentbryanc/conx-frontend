@@ -124,7 +124,7 @@ export default {
                 },
                 {
                     title: 'Pending Invoice',
-                    dataIndex: 'pendinginvoicer',
+                    dataIndex: 'pendinginvoice',
                     key: 'pendinginvoice',
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
@@ -208,9 +208,7 @@ export default {
             this.searchText = '';
         },
         showClientInvoice() {
-            this.$store.commit('changedefaultselectedtab', {
-                selectedkey: 'client-invoice',
-            });
+            this.$router.push('/company/loan/billing-invoice');
         },
     },
 }

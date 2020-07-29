@@ -109,7 +109,7 @@ const data = [
         renderedhours: '40',
         otherexpenses: '$0.00',
         totalbill: '$2904.00',
-        status: 'For Approval',
+        status: 'Requested Modification',
     },
     {
         key: '2',
@@ -120,7 +120,7 @@ const data = [
         renderedhours: '40',
         otherexpenses: '$0.00',
         totalbill: '$4,114.00',
-        status: 'Pending',
+        status: 'For Approval',
     },
     {
         key: '3',
