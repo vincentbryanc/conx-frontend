@@ -143,7 +143,7 @@ export default {
         AppHeader,
         AppSider,
         AppFooter,
-        Users,
+        CompanyUsers,
     },
     data() {
         return {

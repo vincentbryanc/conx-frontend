@@ -45,11 +45,13 @@
                                     v-if="current < steps.length - 1" 
                                     style="float: right"
                                     @click="next">Next <a-icon type="right" /></a-button>
-                                <a-button
-                                    type="primary"
-                                    v-if="current == steps.length - 1"
-                                    style="float: right"
-                                    @click="$message.success('Registration completed!')">Finish <a-icon type="check" /></a-button>
+                                <nuxt-link to="/company/account-information">
+                                    <a-button
+                                        type="primary"
+                                        v-if="current == steps.length - 1"
+                                        style="float: right"
+                                        @click="$message.success('Registration completed!')">Finish <a-icon type="check" /></a-button>
+                                </nuxt-link>
                             </div>
                         </a-card>
                     </a-col>

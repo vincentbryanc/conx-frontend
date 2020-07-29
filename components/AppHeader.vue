@@ -1,7 +1,7 @@
 <template>
   <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
         <a-row>
-            <a-col :lg="{ span: 15, offset: 2 }" :md="{ span: 24 }" :sm="{ span: 24 }">
+            <a-col :lg="{ span: 15, offset: 2 }" :md="{ span: 24, offset: 1 }" :sm="{ span: 24 }">
                 <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '63px', textAlign: 'center' }">
                     <a-menu-item key="0" class="logo"> 
                         <nuxt-link to='/'><img src="~assets/logo.png" /></nuxt-link>

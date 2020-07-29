@@ -3,6 +3,7 @@ export const state = () => ({
     defaultselectedkey: '',
     defaultopenkey: '',
     defaultselectedtab: '',
+    hascreditcard: false,
     action: '',
 });
 
@@ -16,6 +17,12 @@ export const mutations = {
     },
     changedefaultselectedtab(state, payload) {
         state.defaultselectedtab = payload.selectedkey;
+    },
+    addcreditcard(state) {
+        state.hascreditcard = true;
+    },
+    removecreditcard(state) {
+        state.hascreditcard = false;
     },
     actionresolve(state) {
         state.action = 'resolve';

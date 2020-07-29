@@ -19,7 +19,9 @@
                         <span>Agents of Value</span>
                     </span>
                     <a-menu-item key="account">
-                        Profile
+                        <nuxt-link to="/company/account-information">
+                            Profile
+                        </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="logout">
                         <nuxt-link to="/">Logout</nuxt-link>
