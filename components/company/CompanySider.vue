@@ -38,7 +38,7 @@
                         </nuxt-link>
                     </a-menu-item>
                     <a-menu-item key="borrow-requests">
-                        <nuxt-link to="/company/borrow/requests">
+                        <nuxt-link to="/company/borrow/pending-requests">
                             Requests
                         </nuxt-link>
                     </a-menu-item>

@@ -7,24 +7,24 @@
                 <a-breadcrumb :style="{ margin: '16px 0' }">
                     <a-breadcrumb-item>Company Name</a-breadcrumb-item>
                     <a-breadcrumb-item>Borrow</a-breadcrumb-item>
-                    <a-breadcrumb-item>Requests</a-breadcrumb-item>
+                    <a-breadcrumb-item>Approved Requests</a-breadcrumb-item>
                 </a-breadcrumb>
                 <a-layout-content class="layout-content">
                     <div>
-                        <h1 class="title">List of Requests</h1>
+                        <h1 class="title">List of Approved Requests</h1>
                     </div>
                     <div>
-                        <a-tabs default-active-key="1">
-                            <a-tab-pane key="1" tab="Pending">
+                        <a-tabs default-active-key="approved-requests" @change="callback">
+                            <a-tab-pane key="pending-requests" tab="Pending">
                                 <BorrowPendingRequests />
                             </a-tab-pane>
-                            <a-tab-pane key="2" tab="Approved" force-render>
+                            <a-tab-pane key="approved-requests" tab="Approved" force-render>
                                 <BorrowApprovedRequests />
                             </a-tab-pane>
-                            <a-tab-pane key="3" tab="Declined" force-render>
+                            <a-tab-pane key="declined-requests" tab="Declined" force-render>
                                 <BorrowDeclinedRequests />
                             </a-tab-pane>
-                            <a-tab-pane key="4" tab="Cancelled" force-render>
+                            <a-tab-pane key="cancelled-requests" tab="Cancelled" force-render>
                                 <BorrowCancelledRequests />
                             </a-tab-pane>
                         </a-tabs>
@@ -37,13 +37,13 @@
 </template>
 
 <script>
-import AppHeader from '../../../../components/company/CompanyHeader';
-import AppSider from '../../../../components/company/CompanySider';
-import AppFooter from '../../../../components/AppFooter';
-import BorrowPendingRequests from '../../../../components/company/borrow/requests/BorrowPendingRequests';
-import BorrowApprovedRequests from '../../../../components/company/borrow/requests/BorrowApprovedRequests';
-import BorrowDeclinedRequests from '../../../../components/company/borrow/requests/BorrowDeclinedRequests';
-import BorrowCancelledRequests from '../../../../components/company/borrow/requests/BorrowCancelledRequests';
+import AppHeader from '../../../components/company/CompanyHeader';
+import AppSider from '../../../components/company/CompanySider';
+import AppFooter from '../../../components/AppFooter';
+import BorrowPendingRequests from '../../../components/company/borrow/requests/BorrowPendingRequests';
+import BorrowApprovedRequests from '../../../components/company/borrow/requests/BorrowApprovedRequests';
+import BorrowDeclinedRequests from '../../../components/company/borrow/requests/BorrowDeclinedRequests';
+import BorrowCancelledRequests from '../../../components/company/borrow/requests/BorrowCancelledRequests';
 
 export default {
     head() {
@@ -72,6 +72,11 @@ export default {
             selectedkey: 'borrow-requests',
             openkey: 'borrow',
         });
+    },
+    methods: {
+        callback(key) {
+            this.$router.push('/company/borrow/' + key);
+        }
     },
 }
 </script>
