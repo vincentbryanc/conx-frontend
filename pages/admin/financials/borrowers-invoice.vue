@@ -48,6 +48,12 @@ export default {
         AppFooter,
         BorrowersInvoice,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'financial-borrowers-invoice',
+            openkey: 'loan',
+        });
+    },
 }
 </script>
 

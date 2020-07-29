@@ -140,6 +140,12 @@ export default {
         AppFooter,
         Users,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'admin-users',
+            openkey: '',
+        });
+    },
     data() {
         return {
             visible: false,

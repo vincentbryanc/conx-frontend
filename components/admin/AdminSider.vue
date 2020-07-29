@@ -7,7 +7,7 @@
             :default-open-keys="[this.$store.state.defaultopenkey]"
             :style="{ height: '100%', borderRight: 0 }">
             <a-menu-item-group key="administrator" title="Administrator">
-                <a-menu-item key="company-accounts" @click="changedefaultselectedkeyandopenkey('company-accounts', '')">
+                <a-menu-item key="company-accounts">
                     <nuxt-link to="/admin/company-accounts">
                         <a-icon type="team" />
                         <span>Company Accounts</span>
@@ -15,23 +15,23 @@
                 </a-menu-item>
                 <a-sub-menu key="loan">
                     <span slot="title"><a-icon type="project" /><span>Financials</span></span>
-                    <a-menu-item key="financial-borrowers-invoice" @click="changedefaultselectedkeyandopenkey('financial-borrowers-invoice', 'loan')">
+                    <a-menu-item key="financial-borrowers-invoice">
                         <nuxt-link to="/admin/financials/borrowers-invoice">
                             Borrowers Invoice
                         </nuxt-link>
                     </a-menu-item>
-                    <a-menu-item key="financial-loaners-invoice" @click="changedefaultselectedkeyandopenkey('financial-loaners-invoice', 'loan')">
+                    <a-menu-item key="financial-loaners-invoice">
                         <nuxt-link to="/admin/financials/loaners-invoice">
                             Loaners Invoice
                         </nuxt-link>
                     </a-menu-item>
-                    <a-menu-item key="financial-earnings" @click="changedefaultselectedkeyandopenkey('financial-earnings', 'loan')">
+                    <a-menu-item key="financial-earnings" >
                         <nuxt-link to="/admin/financials/earnings">
                             Earnings
                         </nuxt-link>
                     </a-menu-item>
                 </a-sub-menu>
-                <a-menu-item key="admin-reports" @click="changedefaultselectedkeyandopenkey('admin-reports', '')">
+                <a-menu-item key="admin-reports">
                     <nuxt-link to="/admin/reports">
                         <a-icon type="file" />
                         <span>Reports</span>
@@ -39,13 +39,13 @@
                 </a-menu-item>
             </a-menu-item-group>
             <a-menu-item-group key="system" title="System" :style="{ marginTop: '25px' }">
-                <a-menu-item key="admin-subscription-rate" @click="changedefaultselectedkeyandopenkey('admin-subscription-rate', 'admin-subscription-rate')">
+                <a-menu-item key="admin-subscription-rate">
                     <nuxt-link to="/admin/subscription-rate">
                         <a-icon type="file" />
                         <span>Subscription Rate</span>
                     </nuxt-link>
                 </a-menu-item>
-                <a-menu-item key="admin-users" @click="changedefaultselectedkeyandopenkey('admin-users', 'admin-users')">
+                <a-menu-item key="admin-users">
                     <nuxt-link to="/admin/users">
                         <a-icon type="team" />
                         <span>Users</span>

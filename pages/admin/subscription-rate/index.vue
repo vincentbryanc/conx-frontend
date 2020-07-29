@@ -47,6 +47,12 @@ export default {
         AppFooter,
         SubscriptionRate,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'admin-subscription-rate',
+            openkey: '',
+        });
+    },
 }
 </script>
 

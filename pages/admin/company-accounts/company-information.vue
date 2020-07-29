@@ -83,6 +83,12 @@ export default {
         CompanyUsers,
         CompanyEmployees,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'company-accounts',
+            openkey: '',
+        });
+    },
     data() {
         return {
             expandIconPosition: 'right',

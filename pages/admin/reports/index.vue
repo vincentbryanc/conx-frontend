@@ -48,6 +48,12 @@ export default {
         AppFooter,
         ActiveLoansAndBorrows,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'admin-reports',
+            openkey: '',
+        });
+    },
 }
 </script>
 

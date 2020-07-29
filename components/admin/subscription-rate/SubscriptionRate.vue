@@ -82,7 +82,7 @@
                             v-decorator="[
                                 'price', { rules: [{ required: true, message: 'This field is required' }] },
                             ]"
-                            placeholder="Description" />
+                            placeholder="Price ($/month)" />
                     </a-form-item>
                 </a-form>
             </div>

@@ -98,6 +98,12 @@ export default {
         CompanyDetails,
         CompanySummary,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'company-accounts',
+            openkey: '',
+        });
+    },
     data() {
         return {
             current: 0,
