@@ -9,17 +9,17 @@
             <a-menu-item-group key="transactions" title="Transactions">
                 <a-sub-menu key="loan">
                     <span slot="title"><a-icon type="project" /><span>Loan</span></span>
-                    <a-menu-item key="loan-requests" @click="changedefaultselectedkeyandopenkey('loan-requests', 'loan')">
+                    <a-menu-item key="loan-requests">
                         <nuxt-link to="/company/loan/requests">
                             Requests
                         </nuxt-link>
                     </a-menu-item>
-                    <a-menu-item key="loan-billings" @click="changedefaultselectedkeyandopenkey('loan-billings', 'loan')">
+                    <a-menu-item key="loan-billings">
                         <nuxt-link to="/company/loan/billings">
                             Billings
                         </nuxt-link>
                     </a-menu-item>
-                    <a-menu-item key="loan-financials" @click="changedefaultselectedkeyandopenkey('loan-financials', 'loan')">
+                    <a-menu-item key="loan-financials">
                         <nuxt-link to="/company/loan/financials">
                             Financials
                         </nuxt-link>
@@ -27,38 +27,38 @@
                 </a-sub-menu>
                 <a-sub-menu key="borrow">
                     <span slot="title"><a-icon type="interaction" /><span>Borrow</span></span>
-                    <a-menu-item key="borrow-search" @click="changedefaultselectedkeyandopenkey('borrow-search', 'borrow')">
+                    <a-menu-item key="borrow-search">
                         <nuxt-link to="/company/borrow/search">
                             Search
                         </nuxt-link>
                     </a-menu-item>
-                    <a-menu-item key="borrow-cart" @click="changedefaultselectedkeyandopenkey('borrow-cart', 'borrow')">
+                    <a-menu-item key="borrow-cart">
                         <nuxt-link to="/company/borrow/cart">
                             Borrow Cart
                         </nuxt-link>
                     </a-menu-item>
-                    <a-menu-item key="borrow-requests" @click="changedefaultselectedkeyandopenkey('borrow-requests', 'borrow')">
+                    <a-menu-item key="borrow-requests">
                         <nuxt-link to="/company/borrow/requests">
                             Requests
                         </nuxt-link>
                     </a-menu-item>
-                    <a-menu-item key="borrow-active-workers" @click="changedefaultselectedkeyandopenkey('borrow-active-workers', 'borrow')">
+                    <a-menu-item key="borrow-active-workers">
                         <nuxt-link to="/company/borrow/active-workers">
                             Active Workers
                         </nuxt-link>
                     </a-menu-item>
-                    <a-menu-item key="borrow-billings" @click="changedefaultselectedkeyandopenkey('borrow-billings', 'borrow')">
+                    <a-menu-item key="borrow-billings">
                         <nuxt-link to="/company/borrow/billings">
                             Billings
                         </nuxt-link>
                     </a-menu-item>
-                    <a-menu-item key="borrow-financials" @click="changedefaultselectedkeyandopenkey('borrow-financials', 'borrow')">
+                    <a-menu-item key="borrow-financials">
                         <nuxt-link to="/company/borrow/financials">
                             Financials
                         </nuxt-link>
                     </a-menu-item>
                 </a-sub-menu>
-                <a-menu-item key="resume-search" @click="changedefaultselectedkeyandopenkey('resume-search', '')">
+                <a-menu-item key="resume-search">
                     <nuxt-link to="/company/resume-search">
                         <a-icon type="search" />
                         <span>Resume Search</span>
@@ -74,13 +74,13 @@
                 </a-menu-item>
             </a-menu-item-group>
             <a-menu-item-group key="adminstrator" title="Administrator" :style="{ marginTop: '25px' }">
-                <a-menu-item key="company-users" @click="changedefaultselectedkeyandopenkey('company-users', '')">
+                <a-menu-item key="company-users">
                     <nuxt-link to="/company/users">
                         <a-icon type="team" />
                         <span>Users</span>
                     </nuxt-link>
                 </a-menu-item>
-                <a-menu-item key="company-reports" @click="changedefaultselectedkeyandopenkey('company-reports', '')">
+                <a-menu-item key="company-reports">
                     <nuxt-link to="/company/reports">
                         <a-icon type="file" />
                         <span>Reports</span>
@@ -98,12 +98,6 @@ export default {
         toggleSidebar() {
             this.$store.commit('toggleSidebar');
         },
-        changedefaultselectedkeyandopenkey(selectedkey, openkey) {
-            this.$store.commit('changedefaultselectedkeyandopenkey', {
-                selectedkey: selectedkey,
-                openkey: openkey,
-            });
-        }
     }
 }
 </script>

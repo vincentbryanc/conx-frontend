@@ -45,6 +45,12 @@ export default {
         AppFooter,
         ActiveBorrowedWorkers,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'borrow-active-workers',
+            openkey: 'borrow',
+        });
+    },
 }
 </script>
 

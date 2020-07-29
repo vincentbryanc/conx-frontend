@@ -47,6 +47,12 @@ export default {
         AppFooter,
         BorrowCart,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'borrow-cart',
+            openkey: 'borrow',
+        });
+    },
 }
 </script>
 

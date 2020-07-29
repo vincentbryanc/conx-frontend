@@ -158,6 +158,12 @@ export default {
             this.visible = false;
         },
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'company-users',
+            openkey: '',
+        });
+    }
 }
 </script>
 

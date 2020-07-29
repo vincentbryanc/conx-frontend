@@ -59,6 +59,12 @@ export default {
         ReservedEmployees,
         ForLeaseEmployees,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'company-employees',
+            openkey: '',
+        });
+    }
 }
 </script>
 

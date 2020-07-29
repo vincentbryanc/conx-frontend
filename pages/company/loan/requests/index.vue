@@ -62,6 +62,12 @@ export default {
         LoanApprovedRequests,
         LoanDeclinedRequests,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'loan-requests',
+            openkey: 'loan',
+        });
+    },
 }
 </script>
 

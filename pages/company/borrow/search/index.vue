@@ -48,6 +48,12 @@ export default {
         AppFooter,
         SearchEmployees,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'borrow-search',
+            openkey: 'borrow',
+        });
+    },
 }
 </script>
 

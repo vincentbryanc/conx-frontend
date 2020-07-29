@@ -57,6 +57,12 @@ export default {
         BorrowBillingSummary,
         BorrowBillingInvoice,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'borrow-billings',
+            openkey: 'borrow',
+        });
+    },
 }
 </script>
 

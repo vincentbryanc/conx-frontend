@@ -67,6 +67,12 @@ export default {
         BorrowDeclinedRequests,
         BorrowCancelledRequests,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'borrow-requests',
+            openkey: 'borrow',
+        });
+    },
 }
 </script>
 

@@ -47,6 +47,12 @@ export default {
         AppFooter,
         UserActivities,
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'company-reports',
+            openkey: '',
+        });
+    }
 }
 </script>
 

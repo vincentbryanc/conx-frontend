@@ -27,7 +27,7 @@ import ResumeSearch from '../../../components/company/resume-search/ResumeSearch
 export default {
     head() {
         return {
-            title: 'Company Employees',
+            title: 'Resume Search',
             meta: [
                 {
                     hid: 'description',
@@ -42,6 +42,12 @@ export default {
         AppSider,
         AppFooter,
         ResumeSearch,
+    },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'resume-search',
+            openkey: '',
+        });
     },
 }
 </script>

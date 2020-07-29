@@ -198,6 +198,12 @@ export default {
 	beforeCreate() {
         this.form = this.$form.createForm(this, { name: 'company_add_new_employee' });
     },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'company-employees',
+            openkey: '',
+        });
+    }
 }
 </script>
 

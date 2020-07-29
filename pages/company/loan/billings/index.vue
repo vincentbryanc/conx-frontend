@@ -58,6 +58,11 @@ export default {
         LoanBillingClientInvoice,
     },
     created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: 'loan-billings',
+            openkey: 'loan',
+        });
+
         this.$store.commit('changedefaultselectedtab', {
             selectedkey: 'summary',
         });
