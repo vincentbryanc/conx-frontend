@@ -14,6 +14,7 @@
 			<label>Password</label>
 			<a-form-item>
 				<a-input
+					type="password"
 					v-decorator="[
 						'password', { rules: [{ required: true, message: 'Please enter your password' }] },
 					]"
@@ -24,6 +25,7 @@
 			<label>Confirm Password</label>
 			<a-form-item>
 				<a-input
+					type="password"
 					v-decorator="[
 						'confirmPassword', { rules: [{ required: true, message: 'Please confirm your password' }] },
 					]"

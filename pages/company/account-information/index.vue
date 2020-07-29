@@ -4,6 +4,14 @@
         <a-layout :style="{ marginTop: '64px' }">
             <AppSider />
             <a-layout :style="{ padding: '0 24px 24px' }">
+                <div v-if="this.$store.state.hascreditcard === false">
+                    <br />
+                    <a-alert type="warning" message="Please add your credit card information to access the system." banner />
+                    <br />
+                    <div  @click="$message.success('Email Sent Successfully!')" style="cursor:pointer;">
+                        <a-alert type="warning" message="You need to confirm your email. Click here to receive a confirmation." banner />
+                    </div>
+                </div>
                 <a-breadcrumb :style="{ margin: '16px 0' }">
                     <a-breadcrumb-item>Company Name</a-breadcrumb-item>
                     <a-breadcrumb-item>Account Information</a-breadcrumb-item>
@@ -50,6 +58,12 @@ export default {
         AppFooter,
         AccountInformation,
         BillingInformation,
+    },
+    created() {
+        this.$store.commit('changedefaultselectedkeyandopenkey', {
+            selectedkey: '',
+            openkey: '',
+        });
     },
 }
 </script>
