@@ -7,11 +7,11 @@
                 <a-breadcrumb :style="{ margin: '16px 0' }">
                     <a-breadcrumb-item>Company Name</a-breadcrumb-item>
                     <a-breadcrumb-item>Loan</a-breadcrumb-item>
-                    <a-breadcrumb-item>Billings</a-breadcrumb-item>
+                    <a-breadcrumb-item>Billing Summary</a-breadcrumb-item>
                 </a-breadcrumb>
                 <a-layout-content class="layout-content">
                     <div>
-                        <h1 class="title">Billings</h1>
+                        <h1 class="title">Billing Summary</h1>
                     </div>
                     <div>
                         <a-tabs default-active-key="billing-summary" @change="callback">
