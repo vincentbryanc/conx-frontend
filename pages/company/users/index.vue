@@ -10,7 +10,7 @@
                 </a-breadcrumb>
                 <a-layout-content class="layout-content">
                     <div>
-                        <h1 class="title">Users</h1>
+                        <h1 class="title">Manage Users</h1>
                         <div class="text-right">
                             <a-button 
                                 type="primary"
@@ -25,7 +25,7 @@
                 </a-layout-content>
                 <a-modal v-model="visible" title="Add User" on-ok="handleOk" :width="700">
                     <template slot="footer">
-                        <a-button key="back" @click="handleCancel">Close</a-button>
+                        <a-button type="primary" key="back" @click="handleCancel">Cancel <a-icon type="close" /></a-button>
                         <a-button type="success" @click="handleCancel">Save <a-icon type="check" /></a-button>
                     </template>
                     <div>

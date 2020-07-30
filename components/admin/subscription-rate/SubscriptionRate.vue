@@ -52,9 +52,9 @@
         </a-table>
         <a-modal v-model="visible" title="Subscription Rate" on-ok="handleOk" :width="550">
             <template slot="footer">
-                <a-button 
+                <a-button
                     type="primary"
-                    key="back" @click="handleCancel">Close</a-button>
+                    key="back" @click="handleCancel">Cancel <a-icon type="close" /></a-button>
                 <a-button 
                     type="success"
                     @click="handleCancel">Save <a-icon type="check" /></a-button>

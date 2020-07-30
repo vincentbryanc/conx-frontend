@@ -74,14 +74,12 @@
                 </template>
             </template>
             <span slot="action">
-                <a-button @click="showModal">View Profile</a-button>
+                <a-button @click="showModal">View Profile <a-icon type="eye" /></a-button>
             </span>
         </a-table>
         <a-modal v-model="visible" title="View Profile" on-ok="handleOk" :width="550">
             <template slot="footer">
-                <a-button key="back" @click="handleCancel">
-                    Close
-                </a-button>
+                <a-button key="back" @click="handleCancel">Close</a-button>
             </template>
             <div>
                 <p><b>Name: </b> Nelson Gale</p>

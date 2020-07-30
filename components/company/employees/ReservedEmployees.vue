@@ -47,10 +47,10 @@
                 </template>
             </template>
             <span slot="action">
-                <nuxt-link to="/company/employees/view"><a-button>View</a-button></nuxt-link>
-                <nuxt-link to="/company/employees/edit"><a-button>Edit</a-button></nuxt-link>
-                <a-button>For Lease</a-button>
-                <a-button>Release</a-button>
+                <nuxt-link to="/company/employees/view"><a-button>View <a-icon type="eye" /></a-button></nuxt-link>
+                <nuxt-link to="/company/employees/edit"><a-button>Edit <a-icon type="edit" /></a-button></nuxt-link>
+                <a-button type="primary">For Lease <a-icon type="interaction" /></a-button>
+                <a-button type="danger">Release <a-icon type="close" /></a-button>
             </span>
         </a-table>
     </div>

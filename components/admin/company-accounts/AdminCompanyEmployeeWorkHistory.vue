@@ -47,14 +47,12 @@
                 </template>
             </template>
             <span slot="action">
-                <a-button @click="showModal">View</a-button>
+                <a-button @click="showModal">View <a-icon type="eye" /></a-button>
             </span>
         </a-table>
         <a-modal v-model="visible" title="Work History Details" on-ok="handleOk" :width="550">
             <template slot="footer">
-                <a-button key="back" @click="handleCancel">
-                    Close
-                </a-button>
+                <a-button key="back" @click="handleCancel">Close</a-button>
             </template>
             <div>
                 <p><b>Invoice Number: </b> IVN-07272020-0001</p>

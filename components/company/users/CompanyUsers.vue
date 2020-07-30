@@ -47,13 +47,13 @@
                 </template>
             </template>
             <span slot="action">
-                <a-button  @click="showModal">Edit</a-button>
-                <a-button type="danger">Deactivate</a-button>
+                <a-button  @click="showModal">Edit <a-icon type="edit" /></a-button>
+                <a-button type="danger">Deactivate <a-icon type="close" /></a-button>
             </span>
         </a-table>
         <a-modal v-model="visible" title="Edit User" on-ok="handleOk" :width="700">
             <template slot="footer">
-                <a-button key="back" @click="handleCancel">Close</a-button>
+                <a-button type="primary" key="back" @click="handleCancel">Cancel <a-icon type="close" /></a-button>
                 <a-button type="success" @click="handleCancel">Update <a-icon type="check" /></a-button>
             </template>
             <div>
