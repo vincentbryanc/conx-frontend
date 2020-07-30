@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="table-responsive">
         <a-table :data-source="data" :columns="columns">
             <div
                 slot="filterDropdown"
@@ -113,7 +113,6 @@ export default {
                             });
                         }
                     },
-                    width: '15%',
                 },
                 {
                     title: 'Subscription Expiration',
@@ -136,7 +135,6 @@ export default {
                             });
                         }
                     },
-                    width: '15%',
                 },
                 {
                     title: 'Signup Status',

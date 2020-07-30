@@ -52,8 +52,10 @@
                         </div>
                     </a-col>
                     <a-col :lg="{ span: 24 }" :md="{ span: 24 }" :sm="{ span: 24 }">
-                        <a-table :columns="columns" :data-source="data" :pagination="false">
-                        </a-table><br />
+                        <div class="table-responsive">
+                            <a-table :columns="columns" :data-source="data" :pagination="false">
+                            </a-table><br />
+                        </div>
                     </a-col>
                     <a-col :lg="{ span: 16 }" :md="{ span: 16 }" :sm="{ span: 16 }">
                         <div class="text-right">

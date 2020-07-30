@@ -45,8 +45,10 @@
                             <b>Employee ID: AOV000001</b><br /><br />
                         </a-col>
                         <a-col :lg="{ span: 24 }" :md="{ span: 24 }" :sm="{ span: 24 }">
-                            <a-table :columns="columns" :data-source="data" :pagination="false">
-                            </a-table><br />
+                            <div class="table-responsive">
+                                <a-table :columns="columns" :data-source="data" :pagination="false">
+                                </a-table><br />
+                            </div>
                         </a-col>
                         <a-col :lg="{ span: 16 }" :md="{ span: 16 }" :sm="{ span: 16 }">
                             <div class="text-right">
@@ -130,8 +132,10 @@
                 </a-layout-content>
                 <a-layout-content class="layout-content">
                     <h1 class="title">Payment History</h1>
-                    <a-table :columns="columnspaymenthistory" :data-source="paymenthistorydata" :pagination="false">
-                    </a-table>
+                    <div class="table-responsive">
+                        <a-table :columns="columnspaymenthistory" :data-source="paymenthistorydata" :pagination="false">
+                        </a-table>
+                    </div>
                 </a-layout-content>
             </a-col>
         </a-row>
