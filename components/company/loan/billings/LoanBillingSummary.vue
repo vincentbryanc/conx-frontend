@@ -61,7 +61,7 @@ const data = [
         clientname: 'Stark Industries',
         loandedworkercount: '3',
         pendinginvoice: '1',
-        inprogressinvoice: '2',
+        inprogressinvoice: '1',
         requestformodification: '1',
     },
 ];
