@@ -70,7 +70,7 @@
                                 </div>
                                 <div>
                                     <b>Billed to </b> <br />
-                                    Stark Industries <br />
+                                    Agents of Value <br />
                                     200 Park Avenue <br />
                                     New York, USA <br /><br />
                                 </div>
