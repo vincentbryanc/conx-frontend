@@ -11,10 +11,12 @@
                 @click="removeCreditCard">
                 Cancel Subscription
             </a-button>
-            <a-button
-                type="primary">
-                Billing History
-            </a-button>
+            <nuxt-link to="/company/account-information/billing-history">
+                <a-button
+                    type="primary">
+                    Billing History
+                </a-button>
+            </nuxt-link>
         </p>
         <a-modal v-model="visible" title="Edit Credit Card Details" :width="500">
             <template slot="footer">
