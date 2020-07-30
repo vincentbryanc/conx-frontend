@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="table-responsive">
         <a-table :data-source="data" :columns="columns" :row-selection="rowSelection" :pagination="false">
             <div
                 slot="filterDropdown"

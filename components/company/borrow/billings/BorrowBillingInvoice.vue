@@ -12,58 +12,60 @@
             </a-form>
         </div>
         <br />
-        <a-table :data-source="data" :columns="columns">
-            <div
-                slot="filterDropdown"
-                slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
-                style="padding: 8px">
-                <a-input
-                    v-ant-ref="c => (searchInput = c)"
-                    :placeholder="`Search ${column.title}`"
-                    :value="selectedKeys[0]"
-                    style="width: 188px; margin-bottom: 8px; display: block;"
-                    @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
-                    @pressEnter="() => handleSearch(selectedKeys, confirm, column.dataIndex)" />
-                <a-button
-                    type="primary"
-                    icon="search"
-                    size="small"
-                    style="width: 90px; margin-right: 8px"
-                    @click="() => handleSearch(selectedKeys, confirm, column.dataIndex)" >
-                    Search
-                </a-button>
-                <a-button size="small" style="width: 90px" @click="() => handleReset(clearFilters)">
-                    Reset
-                </a-button>
-            </div>
-            <a-icon
-                slot="filterIcon"
-                slot-scope="filtered"
-                type="search"
-                :style="{ color: filtered ? '#108ee9' : undefined }" />
-            <template slot="customRender" slot-scope="text, record, index, column">
-                <span v-if="searchText && searchedColumn === column.dataIndex">
-                    <template
-                        v-for="(fragment, i) in text
-                            .toString()
-                            .split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))">
-                        <mark
-                            v-if="fragment.toLowerCase() === searchText.toLowerCase()"
-                            :key="i"
-                            class="highlight">{{ fragment }}</mark>
-                        <template v-else>{{ fragment }}</template>
+        <div class="table-responsive">
+            <a-table :data-source="data" :columns="columns">
+                <div
+                    slot="filterDropdown"
+                    slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
+                    style="padding: 8px">
+                    <a-input
+                        v-ant-ref="c => (searchInput = c)"
+                        :placeholder="`Search ${column.title}`"
+                        :value="selectedKeys[0]"
+                        style="width: 188px; margin-bottom: 8px; display: block;"
+                        @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
+                        @pressEnter="() => handleSearch(selectedKeys, confirm, column.dataIndex)" />
+                    <a-button
+                        type="primary"
+                        icon="search"
+                        size="small"
+                        style="width: 90px; margin-right: 8px"
+                        @click="() => handleSearch(selectedKeys, confirm, column.dataIndex)" >
+                        Search
+                    </a-button>
+                    <a-button size="small" style="width: 90px" @click="() => handleReset(clearFilters)">
+                        Reset
+                    </a-button>
+                </div>
+                <a-icon
+                    slot="filterIcon"
+                    slot-scope="filtered"
+                    type="search"
+                    :style="{ color: filtered ? '#108ee9' : undefined }" />
+                <template slot="customRender" slot-scope="text, record, index, column">
+                    <span v-if="searchText && searchedColumn === column.dataIndex">
+                        <template
+                            v-for="(fragment, i) in text
+                                .toString()
+                                .split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))">
+                            <mark
+                                v-if="fragment.toLowerCase() === searchText.toLowerCase()"
+                                :key="i"
+                                class="highlight">{{ fragment }}</mark>
+                            <template v-else>{{ fragment }}</template>
+                        </template>
+                    </span>
+                    <template v-else>
+                        {{ text }}
                     </template>
-                </span>
-                <template v-else>
-                    {{ text }}
                 </template>
-            </template>
-            <span slot="action" slot-scope="text, record">
-                <a-button 
-                    @click="showModal" 
-                    v-if="record.status !== 'Work in Progress'">Summary</a-button>
-            </span>
-        </a-table>
+                <span slot="action" slot-scope="text, record">
+                    <a-button 
+                        @click="showModal" 
+                        v-if="record.status !== 'Work in Progress'">Summary</a-button>
+                </span>
+            </a-table>
+        </div>
         <a-modal v-model="visible" title="Billing Details" :width="1000" :style="{ maxHeight: 100 }">
             <template slot="footer">
                 <a-button 

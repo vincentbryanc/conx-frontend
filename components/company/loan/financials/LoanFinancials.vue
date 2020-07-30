@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="table-responsive">
         <br />
         <a-table :data-source="data" :columns="columns">
             <div
