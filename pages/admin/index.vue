@@ -107,13 +107,14 @@ export default {
     },
     methods: {
         handleSubmit(e) {
-        e.preventDefault();
-        this.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-                this.$router.push('admin/company-accounts');
-            }
-        });
+            e.preventDefault();
+            this.$router.push('admin/company-accounts');
+            // this.form.validateFields((err, values) => {
+            //     if (!err) {
+            //         console.log('Received values of form: ', values);
+            //         this.$router.push('admin/company-accounts');
+            //     }
+            // });
         },
     },
 }

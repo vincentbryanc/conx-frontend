@@ -112,13 +112,14 @@ export default {
     },
     methods: {
         handleSubmit(e) {
-        e.preventDefault();
-        this.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-                this.$router.push('company/employees');
-            }
-        });
+            e.preventDefault();
+            this.$router.push('company/employees/reserved');
+            // this.form.validateFields((err, values) => {
+            //     if (!err) {
+            //         console.log('Received values of form: ', values);
+            //         this.$router.push('company/employees/reserved');
+            //     }
+            // });
         },
     },
 }
