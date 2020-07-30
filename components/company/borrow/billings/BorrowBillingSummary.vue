@@ -63,7 +63,7 @@ const data = [
         clientname: 'Stark Industries',
         loandedworkercount: '3',
         outstandingbalance: '$7,018.00',
-        unresolvedrequestedmodification: '2',
+        unresolvedrequestedmodification: '1',
     },
 ];
 export default {
