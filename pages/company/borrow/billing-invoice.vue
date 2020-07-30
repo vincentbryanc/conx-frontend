@@ -5,7 +5,7 @@
             <AppSider />
             <a-layout :style="{ padding: '0 24px 24px' }">
                 <a-breadcrumb :style="{ margin: '16px 0' }">
-                    <a-breadcrumb-item>Company Name</a-breadcrumb-item>
+                    <a-breadcrumb-item>{{ this.$store.state.companyname }}</a-breadcrumb-item>
                     <a-breadcrumb-item>Borrow</a-breadcrumb-item>
                     <a-breadcrumb-item>Billing Invoice</a-breadcrumb-item>
                 </a-breadcrumb>

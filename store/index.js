@@ -1,4 +1,5 @@
 export const state = () => ({
+    companyname: 'Agents of Value',
     collapsed: false,
     defaultselectedkey: '',
     defaultopenkey: '',
