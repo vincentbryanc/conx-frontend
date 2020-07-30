@@ -67,7 +67,7 @@
             </a-menu-item-group>
             <a-menu-item-group key="company" title="Company" :style="{ marginTop: '25px' }">
                 <a-menu-item key="company-employees">
-                    <nuxt-link to="/company/employees">
+                    <nuxt-link to="/company/employees/reserved">
                         <a-icon type="contacts" />
                         <span>Employees</span>
                     </nuxt-link>

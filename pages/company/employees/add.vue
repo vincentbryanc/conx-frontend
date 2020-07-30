@@ -207,14 +207,5 @@ export default {
 }
 </script>
 
-<style scoped>
-    .date-picker {
-        width: '345px'
-    }
-    @media only screen and (min-width: 768px) {
-        /* For desktop: */
-        .date-picker {
-            width: '345px'
-        }
-    }
+<style>
 </style>

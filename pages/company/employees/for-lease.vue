@@ -16,11 +16,11 @@
                         </div>
                     </div>
                     <div>
-                        <a-tabs default-active-key="1">
-                            <a-tab-pane key="1" tab="Reserved">
+                        <a-tabs default-active-key="for-lease" @change="callback">
+                            <a-tab-pane key="reserved" tab="Reserved">
                                 <ReservedEmployees />
                             </a-tab-pane>
-                            <a-tab-pane key="2" tab="For Lease" force-render>
+                            <a-tab-pane key="for-lease" tab="For Lease" force-render>
                                 <ForLeaseEmployees />
                             </a-tab-pane>
                         </a-tabs>
@@ -64,7 +64,12 @@ export default {
             selectedkey: 'company-employees',
             openkey: '',
         });
-    }
+    },
+    methods: {
+        callback(key) {
+            this.$router.push('/company/employees/' + key);
+        }
+    },
 }
 </script>
 
