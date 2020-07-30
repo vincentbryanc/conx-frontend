@@ -19,6 +19,7 @@
                 <a-form-item label="Level of Experience">
                     <a-select
                         placeholder="Level of Experience" style="width: 180px">
+                        <a-select-option value="all">All</a-select-option>
                         <a-select-option value="master">Master</a-select-option>
                         <a-select-option value="journeyman">Journeyman</a-select-option>
                         <a-select-option value="1styear">1st Year</a-select-option>

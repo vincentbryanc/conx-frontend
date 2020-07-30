@@ -74,7 +74,7 @@ const data = [
         borrowingcompany: 'Stark Industries',
         servicecharge: '$400.00',
         duedate: 'July 27, 2020',
-        status: 'Partial',
+        status: 'Partial Payment',
         totaltransactioncost: '$4,840.00',
     },
     {
@@ -85,7 +85,7 @@ const data = [
         borrowingcompany: 'Stark Industries',
         servicecharge: '$400.00',
         duedate: 'July 27, 2020',
-        status: 'Paid',
+        status: 'Full Payment',
         totaltransactioncost: '$4,840.00',
     },
 ];

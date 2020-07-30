@@ -75,7 +75,7 @@
                     <nuxt-link to="/company/borrow/search">
                         <a-button type="primary">Cancel <a-icon type="close"></a-icon></a-button>
                     </nuxt-link>
-                    <nuxt-link to="/company/borrow/requests">
+                    <nuxt-link to="/company/borrow/pending-requests">
                         <a-button type="success">Submit Request <a-icon type="check"></a-icon></a-button>
                     </nuxt-link>
                 </a-col>

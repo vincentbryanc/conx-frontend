@@ -60,7 +60,7 @@
                     </template>
                 </template>
                 <span slot="action" slot-scope="text, record">
-                    <a-button @click="showModal(action = 'resolve')" v-if="record.status === 'Request Modification'">Resolve</a-button>
+                    <a-button @click="showModal(action = 'resolve')" v-if="record.status === 'Requested Modification'">Resolve</a-button>
                     <a-button @click="showModal(action = 'update')" v-if="record.status === 'Pending' || record.status === 'Work in Progress'">Update</a-button>
                     <a-button v-if="record.status === 'Pending'">Send</a-button>
                 </span>
@@ -99,7 +99,7 @@ const data = [
         renderedhours: '40',
         otherexpenses: '$0.00',
         totalbill: '$2904.00',
-        status: 'Request Modification',
+        status: 'Requested Modification',
     },
     {
         key: '2',

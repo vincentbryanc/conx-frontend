@@ -82,16 +82,16 @@ const data = [
         totalcost: '$4,840.00',
         status: 'Payment Received',
     },
-    {
-        key: '3',
-        transactiondate: 'July 20, 2020 02:00PM',
-        invoicenumber: 'IVN-07242020-001',
-        employeename: 'Gail Vo',
-        noofhoursworked: '40',
-        billingrate: '$100',
-        totalcost: '$4,840.00',
-        status: 'Disbursed',
-    },
+    // {
+    //     key: '3',
+    //     transactiondate: 'July 20, 2020 02:00PM',
+    //     invoicenumber: 'IVN-07242020-001',
+    //     employeename: 'Gail Vo',
+    //     noofhoursworked: '40',
+    //     billingrate: '$100',
+    //     totalcost: '$4,840.00',
+    //     status: 'Disbursed',
+    // },
 ];
 export default {
     name: "LoanFinancials",
