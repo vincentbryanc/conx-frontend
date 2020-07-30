@@ -156,8 +156,8 @@
                                     <a-col :lg="{ span: 23 }" :md="{ span: 23 }">
                                         <a-form-item>
                                             <div class="text-right">
-                                                <nuxt-link to='/company/employees'><a-button type="primary">Cancel <a-icon type="close" /></a-button></nuxt-link>
-                                                <nuxt-link to='/company/employees'><a-button type="success">Update <a-icon type="check" /></a-button></nuxt-link>
+                                                <nuxt-link to='/company/employees/reserved'><a-button type="primary">Cancel <a-icon type="close" /></a-button></nuxt-link>
+                                                <nuxt-link to='/company/employees/reserved'><a-button type="success">Update <a-icon type="check" /></a-button></nuxt-link>
                                             </div>
                                         </a-form-item>
                                     </a-col>

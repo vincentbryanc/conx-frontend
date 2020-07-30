@@ -10,7 +10,7 @@
                     <a-breadcrumb-item>Employee Information</a-breadcrumb-item>
                 </a-breadcrumb>
                 <a-layout-content class="layout-content">
-                    <nuxt-link to="/company/employees">
+                    <nuxt-link to="/company/employees/reserved">
                         <a-button type="primary"><a-icon type="arrow-left" /> Back</a-button>
                     </nuxt-link>
                     <br /><br />

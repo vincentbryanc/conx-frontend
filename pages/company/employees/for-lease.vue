@@ -12,7 +12,7 @@
                     <div>
                         <h1 class="title">Employees</h1>
                         <div class="text-right">
-                            <nuxt-link to='employees/add'><a-button type="primary">Add Employee <a-icon type="plus" /></a-button></nuxt-link>
+                            <nuxt-link to='/company/employees/add'><a-button type="primary">Add Employee <a-icon type="plus" /></a-button></nuxt-link>
                         </div>
                     </div>
                     <div>
