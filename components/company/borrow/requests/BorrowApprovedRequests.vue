@@ -65,9 +65,9 @@
                 <p><b>Requested By: </b> Danny Sullivan</p>
                 <p><b>Contact Number: </b> (724) 824-1233</p>
                 <p><b>Address: </b> 5804 Forbes Avenue, Pittsburgh, PA 15217</p>
+                <p><b>Requester Note: </b> Requesting this employees</p>
                 <p><b>Approved Date: </b> July 15, 2020</p>
                 <p><b>Approved By: </b> Natasha Romanoff (Owner)</p>
-                <p><b>Requester Note: </b> Requesting this employees</p>
                 <p><b>Approver Note: </b> Good to go. Approved!</p>
             </div>
         </a-modal>

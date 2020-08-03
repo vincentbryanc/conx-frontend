@@ -72,7 +72,7 @@
                     key="back" 
                     @click="handleCancel">Close</a-button>
                 <a-button 
-                    type="primary" 
+                    type="success" 
                     @click="handleCancel" 
                     v-if="this.$store.state.action === 'resolve'">Resolve <a-icon type="check" /></a-button>
                 <a-button 

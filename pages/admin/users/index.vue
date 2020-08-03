@@ -75,7 +75,7 @@
                                 <a-row>
                                     <a-col :lg="{ span: 12 }" :md="{ span: 11 }" :sm="{ span: 24 }">
                                         <a-form-item class="role-card">
-                                            <a-checkbox>Admin</a-checkbox>
+                                            <a-checkbox>Super Admin</a-checkbox>
                                             <ul>
                                                 <li>Administrator Transaction Access</li>
                                                 <ul>
@@ -93,7 +93,7 @@
                                     </a-col>
                                     <a-col :lg="{ span: 11, offset: 1 }" :md="{ span: 11, offset: 1 }" :sm="{ span: 24 }">
                                         <a-form-item class="role-card">
-                                            <a-checkbox>Manager</a-checkbox>
+                                            <a-checkbox>Admin</a-checkbox>
                                             <ul>
                                                 <li>Administrator Transaction Access</li>
                                                 <ul>

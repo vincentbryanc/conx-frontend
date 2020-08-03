@@ -67,7 +67,7 @@
                 <p><b>Address: </b> 5804 Forbes Avenue, Pittsburgh, PA 15217</p>
                 <p><b>Requester Note: </b> Requesting this employees</p>
                 <p><b>Cancelled Date: </b> July 15, 2020</p>
-                <p><b>Declined By: </b> Danny Sullivan (Owner)</p>
+                <p><b>Cancelled By: </b> Danny Sullivan (Owner)</p>
             </div>
         </a-modal>
     </div>

@@ -70,10 +70,10 @@
                                     placeholder="MM/YY" />
                             </a-form-item>
                         </a-col>
-                        <a-form-item>
-                            <a-checkbox>Auto-renew Subscription</a-checkbox>
-                        </a-form-item>
                     </a-row>
+                    <a-form-item>
+                        <a-checkbox>Auto-renew Subscription</a-checkbox>
+                    </a-form-item>
                 </a-form>
             </div>
         </a-modal>
