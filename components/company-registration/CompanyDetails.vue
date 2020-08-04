@@ -11,16 +11,56 @@
 					<a-icon slot="prefix" type="bank" style="color: rgba(0,0,0,.25)" />
 				</a-input>
 			</a-form-item>
-			<label>Company Address</label>
-			<a-form-item>
-				<a-input
-					v-decorator="[
-						'companyAddress', { rules: [{ required: true, message: 'Please enter your company address' }] },
-					]"
-					placeholder="Company Address">
-					<a-icon slot="prefix" type="pushpin" style="color: rgba(0,0,0,.25)" />
-				</a-input>
-			</a-form-item>
+            <a-row>
+                <a-col :lg="{ span: 12 }" :md="{ span: 12 }" :sm="{ span: 24 }">
+                    <label>Company Address Street</label>
+                    <a-form-item>
+                        <a-input
+                            v-decorator="[
+                                'addressstreet', { rules: [{ required: true, message: 'Please enter your street' }] },
+                            ]"
+                            placeholder="Street">
+                            <a-icon slot="prefix" type="pushpin" style="color: rgba(0,0,0,.25)" />
+                        </a-input>
+                    </a-form-item>
+                </a-col>
+                <a-col :lg="{ span: 11, offset: 1 }" :md="{ span: 11, offset: 1 }" :sm="{ span: 24 }">
+                    <label>Company Address City</label>
+                    <a-form-item>
+                        <a-input
+                            v-decorator="[
+                                'city', { rules: [{ required: true, message: 'Please enter your city' }] },
+                            ]"
+                            placeholder="City">
+                            <a-icon slot="prefix" type="pushpin" style="color: rgba(0,0,0,.25)" />
+                        </a-input>
+                    </a-form-item>
+                </a-col>
+                <a-col :lg="{ span: 12 }" :md="{ span: 12 }" :sm="{ span: 24 }">
+                    <label>Company Address State</label>
+                    <a-form-item>
+                        <a-input
+                            v-decorator="[
+                                'state', { rules: [{ required: true, message: 'Please enter your state' }] },
+                            ]"
+                            placeholder="State">
+                            <a-icon slot="prefix" type="pushpin" style="color: rgba(0,0,0,.25)" />
+                        </a-input>
+                    </a-form-item>
+                </a-col>
+                <a-col :lg="{ span: 11, offset: 1 }" :md="{ span: 11, offset: 1 }" :sm="{ span: 24 }">
+                    <label>Company Address Zip Code</label>
+                    <a-form-item>
+                        <a-input
+                            v-decorator="[
+                                'zipcode', { rules: [{ required: true, message: 'Please enter your zip code' }] },
+                            ]"
+                            placeholder="Zip Code">
+                            <a-icon slot="prefix" type="pushpin" style="color: rgba(0,0,0,.25)" />
+                        </a-input>
+                    </a-form-item>
+                </a-col>
+            </a-row>
             <a-row>
                     <a-col :lg="{ span: 12 }" :md="{ span: 12 }" :sm="{ span: 24 }">
                         <label>Phone Number</label>

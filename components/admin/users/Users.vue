@@ -49,6 +49,7 @@
                 </template>
                 <span slot="action">
                     <a-button @click="showModal">Edit <a-icon type="edit" /></a-button>
+                    <a-button type="danger">Deactivate <a-icon type="close" /></a-button>
                 </span>
             </a-table>
         </div>

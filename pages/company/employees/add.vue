@@ -93,21 +93,45 @@
                                     </a-col>
                                 </a-row>
                                 <a-row>
-                                    <a-col :lg="{ span: 16 }" :md="{ span: 16 }">
+                                    <a-col :lg="{ span: 11 }" :md="{ span: 11 }" :sm="{ span: 24 }">
                                         <!-- Level of Experience -->
-                                        <label>Address (Street, City, State/Province/Region, City, Country)</label>
+                                        <label>Address Street</label>
                                         <a-form-item>
                                             <a-input
                                                 v-decorator="[
-                                                    'address', { rules: [{ required: true, message: 'This field is required' }] },
+                                                    'street', { rules: [{ required: true, message: 'This field is required' }] },
                                                 ]"
-                                                placeholder="Address">
+                                                placeholder="Street">
                                             </a-input>
                                         </a-form-item>
                                     </a-col>
-                                    <a-col :lg="{ span: 6, offset: 1 }" :md="{ span: 6, offset: 1 }">
+                                    <a-col :lg="{ span: 11, offset: 1 }" :md="{ span: 11, offset: 1 }" :sm="{ span: 24 }">
                                         <!-- Level of Experience -->
-                                        <label>Zip Code</label>
+                                        <label>Address City</label>
+                                        <a-form-item>
+                                            <a-input
+                                                v-decorator="[
+                                                    'city', { rules: [{ required: true, message: 'This field is required' }] },
+                                                ]"
+                                                placeholder="City">
+                                            </a-input>
+                                        </a-form-item>
+                                    </a-col>
+                                    <a-col :lg="{ span: 11 }" :md="{ span: 11 }" :sm="{ span: 24 }">
+                                        <!-- Level of Experience -->
+                                        <label>Address State</label>
+                                        <a-form-item>
+                                            <a-input
+                                                v-decorator="[
+                                                    'State', { rules: [{ required: true, message: 'This field is required' }] },
+                                                ]"
+                                                placeholder="State">
+                                            </a-input>
+                                        </a-form-item>
+                                    </a-col>
+                                    <a-col :lg="{ span: 11, offset: 1 }" :md="{ span: 11, offset: 1 }" :sm="{ span: 24 }">
+                                        <!-- Level of Experience -->
+                                        <label>Address Zip Code</label>
                                         <a-form-item>
                                             <a-input
                                                 v-decorator="[
@@ -117,7 +141,7 @@
                                             </a-input>
                                         </a-form-item>
                                     </a-col>
-                                    <a-col :lg="{ span: 8 }" :md="{ span: 8 }">
+                                    <a-col :lg="{ span: 11 }" :md="{ span: 11 }">
                                         <!-- Hourly Rate -->
                                         <label>Hourly Rate</label>
                                         <a-form-item>
@@ -129,11 +153,13 @@
                                             </a-input>
                                         </a-form-item>
                                     </a-col>
-                                    <a-col :lg="{ span: 14, offset: 1 }" :md="{ span: 14, offset: 1 }">
+                                    <a-col :lg="{ span: 11 }" :md="{ span: 11, offset: 1 }">
                                         <!-- Hourly Rate -->
                                         <label>Additional Details</label>
                                         <a-form-item>
                                             <a-input
+                                                type="textarea"
+                                                row="1"
                                                 v-decorator="[
                                                     'additionaldetails', { rules: [{ required: true, message: 'This field is required' }] },
                                                 ]"
