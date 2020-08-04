@@ -96,6 +96,7 @@
             <div>
                 <p><b>Employee ID: </b> AOV000001</p>
                 <p><b>Zip Code: </b> 95035</p>
+                <p><b>Expertise: </b> Electrical</p>
                 <p><b>Level of Experience: </b> Master</p>
                 <p><b>Areas of Work: </b> Commercial</p>
                 <p><b>Hourly Rate: </b> $85</p>
@@ -112,6 +113,7 @@ const data = [
         key: '1',
         employeeid: 'AOV000001',
         zipcode: '95035',
+        expertise: 'Electrical',
         levelofexperience: 'Master',
         areaofwork: 'Commercial',
         hourlyrate: '$85',
@@ -120,6 +122,7 @@ const data = [
         key: '2',
         employeeid: 'AOV000002',
         zipcode: '95035',
+        expertise: 'Electrical',
         levelofexperience: 'Industrial, Fire Alarm, Security',
         areaofwork: 'Industrial, Fire Alarm, Security',
         hourlyrate: '$60',
@@ -128,6 +131,7 @@ const data = [
         key: '3',
         employeeid: 'AOV000003',
         zipcode: '95035',
+        expertise: 'Electrical',
         levelofexperience: 'Residential',
         areaofwork: 'Industrial, Fire Alarm, Security',
         hourlyrate: '$100',
@@ -136,6 +140,7 @@ const data = [
         key: '4',
         employeeid: 'AOV000004',
         zipcode: '95035',
+        expertise: 'Electrical',
         levelofexperience: 'Commercial, Industrial, Residential',
         areaofwork: 'Industrial, Fire Alarm, Security',
         hourlyrate: '$100',
@@ -144,6 +149,7 @@ const data = [
         key: '5',
         employeeid: 'AOV000005',
         zipcode: '95035',
+        expertise: 'Electrical',
         levelofexperience: 'Commercial, Industrial, Residential',
         areaofwork: 'Industrial, Fire Alarm, Security',
         hourlyrate: '$100',
@@ -152,6 +158,7 @@ const data = [
         key: '6',
         employeeid: 'AOV000006',
         zipcode: '95035',
+        expertise: 'Electrical',
         levelofexperience: 'Commercial, Industrial, Residential',
         areaofwork: 'Industrial, Fire Alarm, Security',
         hourlyrate: '$100',
@@ -208,6 +215,29 @@ export default {
                     },
                     onFilter: (value, record) =>
                         record.zipcode
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Expertise',
+                    dataIndex: 'expertise',
+                    key: 'expertise',
+                    sorter: (a, b) => { return a.expertise.localeCompare(b.expertise)},
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.expertise
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),

@@ -66,6 +66,7 @@ const data = [
         key: '1',
         name: 'Steve Rogers',
         employeeid: 'AOV000001',
+        expertise: 'Electrical',
         levelofexperience: 'Master',
         areaofwork: 'Commercial, Industrial, Residential',
         zipcode: '95035',
@@ -75,6 +76,7 @@ const data = [
         key: '2',
         name: 'Thor Odinson',
         employeeid: 'AOV000002',
+        expertise: 'Electrical',
         levelofexperience: 'Master',
         areaofwork: 'Industrial, Fire Alarm, Security',
         zipcode: '95035',
@@ -84,6 +86,7 @@ const data = [
         key: '3',
         name: 'Kim Tan',
         employeeid: 'AOV000003',
+        expertise: 'Electrical',
         levelofexperience: 'Journeyman',
         areaofwork: 'Commercial, Industrial, Residential',
         zipcode: '95035',
@@ -93,6 +96,7 @@ const data = [
         key: '4',
         name: 'Luke Charles',
         employeeid: 'AOV000004',
+        expertise: 'Electrical',
         levelofexperience: '2nd Year',
         areaofwork: 'Industrial, Fire Alarm, Security',
         zipcode: '95035',
@@ -102,6 +106,7 @@ const data = [
         key: '5',
         name: 'Rylan Bain',
         employeeid: 'AOV000005',
+        expertise: 'Electrical',
         levelofexperience: 'Journeyman',
         areaofwork: 'Commercial, Industrial, Residential',
         zipcode: '95035',
@@ -111,6 +116,7 @@ const data = [
         key: '6',
         name: 'Gail Vo',
         employeeid: 'AOV000006',
+        expertise: 'Electrical',
         levelofexperience: 'Journeyman',
         areaofwork: 'Commercial, Industrial, Residential',
         zipcode: '95035',
@@ -120,6 +126,7 @@ const data = [
         key: '7',
         name: 'Leo Mosley',
         employeeid: 'AOV000007',
+        expertise: 'Electrical',
         levelofexperience: 'Journeyman',
         areaofwork: 'Commercial, Industrial, Residential',
         zipcode: '95035',
@@ -129,6 +136,7 @@ const data = [
         key: '8',
         name: 'Rory Tierney',
         employeeid: 'AOV000008',
+        expertise: 'Electrical',
         levelofexperience: 'Journeyman',
         areaofwork: 'Commercial, Industrial, Residential',
         zipcode: '95035',
@@ -186,6 +194,29 @@ export default {
                     },
                     onFilter: (value, record) =>
                         record.employeeid
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Expertise',
+                    dataIndex: 'expertise',
+                    key: 'expertise',
+                    sorter: (a, b) => { return a.expertise.localeCompare(b.expertise)},
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.expertise
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),

@@ -19,7 +19,9 @@
                             <h1 class="title">Employee Information</h1>
                             <p><b>Employee ID: </b> <span>AOV000001</span></p>
                             <p><b>Employee Name: </b> <span>Steve Rogers</span></p>
+                            <p><b>Expertise: </b> <span>Electrical</span></p>
                             <p><b>Level of Experience: </b> <span>Master</span></p>
+                            <p><b>Areas of Work: </b> <span>Commercial, Industrial, Residential</span></p>
                             <p><b>Address: </b> <span>123 St. Mt. Rainer, Milpitas Avenue, California 95035</span></p>
                             <p><b>Hourly Rate ($ / hour) : </b> <span>$85</span></p>
                             <p>
@@ -27,7 +29,6 @@
                                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                     eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
                             </p>
-                            <p><b>Areas of Work: </b> <span>Commercial, Industrial, Residential</span></p>
                             <p><b>Date Hired: </b> <span>June 01, 2020</span></p>
                         </a-col>
                         <a-col :lg="{ span: 14, offset: 2 }" :md="{ span: 14, offset: 2 }" :sm="{ span: 24 }">

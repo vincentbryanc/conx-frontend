@@ -62,6 +62,7 @@ const data = [
         key: '1',
         name: 'Kim Tan',
         employeeid: 'AOV000003',
+        expertise: 'Electrical',
         levelofexperience: 'Journeyman',
         areaofwork: 'Commercial, Industrial, Residential',
         zipcode: '95035',
@@ -118,6 +119,29 @@ export default {
                     },
                     onFilter: (value, record) =>
                         record.employeeid
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Expertise',
+                    dataIndex: 'expertise',
+                    key: 'expertise',
+                    sorter: (a, b) => { return a.expertise.localeCompare(b.expertise)},
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.expertise
                         .toString()
                         .toLowerCase()
                         .includes(value.toLowerCase()),

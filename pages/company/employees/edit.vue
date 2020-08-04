@@ -59,6 +59,20 @@
                                         </a-form-item>
                                     </a-col>
                                     <a-col :lg="{ span: 11 }" :md="{ span: 11 }">
+                                        <!-- Expertise -->
+                                        <label>Expertise</label>
+                                        <a-form-item>
+                                            <a-select
+                                                v-decorator="[
+                                                    'expertise',
+                                                    { rules: [{ required: true, message: 'Please select expertise' }] },
+                                                ]"
+                                                placeholder="Expertise">
+                                                <a-select-option value="electrical">Electrical</a-select-option>
+                                            </a-select>
+                                        </a-form-item>
+                                    </a-col>
+                                    <a-col :lg="{ span: 11, offset: 1 }" :md="{ span: 11, offset: 1 }">
                                         <!-- Level of Experience -->
                                         <label>Level of Experience</label>
                                         <a-form-item>
