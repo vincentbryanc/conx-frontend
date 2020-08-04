@@ -1,6 +1,6 @@
 <template>
     <div class="table-responsive">
-        <a-table :data-source="data" :columns="columns">
+        <a-table :data-source="data" :columns="columns" :loading="loading">
             <div
                 slot="filterDropdown"
                 slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -74,6 +74,7 @@ export default {
     name: "CompanyUsers",
     data() {
         return {
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -87,6 +88,7 @@ export default {
                     title: 'Name',
                     dataIndex: 'name',
                     key: 'name',
+                    sorter: (a, b) => { return a.name.localeCompare(b.name)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -110,6 +112,7 @@ export default {
                     title: 'Email Address',
                     dataIndex: 'emailaddress',
                     key: 'emailaddress',
+                    sorter: (a, b) => { return a.emailaddress.localeCompare(b.emailaddress)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -132,23 +135,19 @@ export default {
                     title: 'Role',
                     dataIndex: 'role',
                     key: 'role',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.role
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.role.localeCompare(b.role)},
+                    filters: [
+                        {
+                            text: 'Admin',
+                            value: 'Admin',
+                        },
+                        {
+                            text: 'Manager',
+                            value: 'Manager',
+                        },
+                    ],
+                    filterMultiple: true,
+                    onFilter: (value, record) => record.role.indexOf(value) === 0,
                 },
             ];
             return columns;

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="table-responsive">
-            <a-table :data-source="data" :columns="columns">
+            <a-table :data-source="data" :columns="columns" :loading="loading">
                 <div
                     slot="filterDropdown"
                     slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -137,6 +137,7 @@ export default {
     data() {
         return {
             visible: false,
+            loading: false,
             data,
             billingitemdata,
             searchText: '',
@@ -151,6 +152,7 @@ export default {
                     title: 'Invoice Number',
                     dataIndex: 'invoicenumber',
                     key: 'invoicenumber',
+                    sorter: (a, b) => { return a.invoicenumber.localeCompare(b.invoicenumber)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -174,6 +176,7 @@ export default {
                     title: 'Transaction Date',
                     dataIndex: 'transactiondate',
                     key: 'transactiondate',
+                    sorter: (a, b) => { return a.transactiondate.localeCompare(b.transactiondate)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -218,23 +221,7 @@ export default {
                     title: 'Amount',
                     dataIndex: 'amount',
                     key: 'amount',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.amount
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.amount.localeCompare(b.amount)},
                 },
                 {
                     title: 'Action',

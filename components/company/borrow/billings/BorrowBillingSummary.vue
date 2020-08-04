@@ -2,7 +2,7 @@
     <div>
         <br />
         <div class="table-responsive">
-            <a-table :data-source="data" :columns="columns">
+            <a-table :data-source="data" :columns="columns" :loading="loading">
                 <div
                     slot="filterDropdown"
                     slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -71,6 +71,7 @@ export default {
     data() {
         return {
             visible: false,
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -84,6 +85,7 @@ export default {
                     title: 'Client Name',
                     dataIndex: 'clientname',
                     key: 'clientname',
+                    sorter: (a, b) => { return a.clientname.localeCompare(b.clientname)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -106,67 +108,19 @@ export default {
                     title: 'Loanded Worker Count',
                     dataIndex: 'loandedworkercount',
                     key: 'loandedworkercount',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.loandedworkercount
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.loandedworkercount.localeCompare(b.loandedworkercount)},
                 },
                 {
                     title: 'My Outstanding Balance',
                     dataIndex: 'outstandingbalance',
                     key: 'outstandingbalance',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.outstandingbalance
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.outstandingbalance.localeCompare(b.outstandingbalance)},
                 },
                 {
                     title: 'Unresolved Requested Modification',
                     dataIndex: 'unresolvedrequestedmodification',
                     key: 'unresolvedrequestedmodification',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.unresolvedrequestedmodification
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.unresolvedrequestedmodification.localeCompare(b.unresolvedrequestedmodification)},
                 },
                 {
                     title: 'Action',

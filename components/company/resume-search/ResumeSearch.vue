@@ -28,7 +28,7 @@
         </div>
         <br />
         <div class="table-responsive">
-            <a-table :data-source="data" :columns="columns">
+            <a-table :data-source="data" :columns="columns" :loading="loading">
                 <div
                     slot="filterDropdown"
                     slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -122,6 +122,7 @@ export default {
     data() {
         return {
             visible: false,
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -135,6 +136,7 @@ export default {
                     title: 'Name',
                     dataIndex: 'name',
                     key: 'name',
+                    sorter: (a, b) => { return a.name.localeCompare(b.name)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -158,6 +160,7 @@ export default {
                     title: 'Zip Code',
                     dataIndex: 'zipcode',
                     key: 'zipcode',
+                    sorter: (a, b) => { return a.zipcode.localeCompare(b.zipcode)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -180,28 +183,41 @@ export default {
                     title: 'Level Of Experience',
                     dataIndex: 'levelofexperience',
                     key: 'levelofexperience',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.levelofexperience
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.levelofexperience.localeCompare(b.levelofexperience)},
+                    filters: [
+                        {
+                            text: 'Master',
+                            value: 'Master',
+                        },
+                        {
+                            text: 'Journeyman',
+                            value: 'Journeyman',
+                        },
+                        {
+                            text: '1st Year',
+                            value: '1st Year',
+                        },
+                        {
+                            text: '2nd Year',
+                            value: '2nd Year',
+                        },
+                        {
+                            text: '3rd Year',
+                            value: '3rd Year',
+                        },
+                        {
+                            text: '4th Year',
+                            value: '4th Year',
+                        },
+                    ],
+                    filterMultiple: true,
+                    onFilter: (value, record) => record.levelofexperience.indexOf(value) === 0,
                 },
                 {
                     title: 'Area of Work',
                     dataIndex: 'areaofwork',
                     key: 'areaofwork',
+                    sorter: (a, b) => { return a.areaofwork.localeCompare(b.areaofwork)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -224,6 +240,7 @@ export default {
                     title: 'Date Uploaded',
                     dataIndex: 'dateuploaded',
                     key: 'dateuploaded',
+                    sorter: (a, b) => { return a.dateuploaded.localeCompare(b.dateuploaded)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',

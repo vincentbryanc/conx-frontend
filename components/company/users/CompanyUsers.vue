@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="table-responsive">
-            <a-table :data-source="data" :columns="columns">
+            <a-table :data-source="data" :columns="columns" :loading="loading">
                 <div
                     slot="filterDropdown"
                     slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -148,129 +148,127 @@
 </template>
 
 <script>
-    const data = [
-        {
-            key: '1',
-            name: 'Kim Tan',
-            emailaddress: 'steve.jobs@aov.com',
-            role: 'Admin',
-        },
-        {
-            key: '2',
-            name: 'Bill Gates',
-            emailaddress: 'bill.gates@aov.com',
-            role: 'Manager',
-        },
-    ];
-    
-    export default {
-        name: "CompanyUsers",
-        data() {
-            return {
-                visible: false,
-                data,
-                searchText: '',
-                searchInput: null,
-                searchedColumn: '',
-            };
-        },
-        computed: {
-            columns() {
-                const columns = [
-                    {
-                        title: 'Name',
-                        dataIndex: 'name',
-                        key: 'name',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.name
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                        
+const data = [
+    {
+        key: '1',
+        name: 'Kim Tan',
+        emailaddress: 'steve.jobs@aov.com',
+        role: 'Admin',
+    },
+    {
+        key: '2',
+        name: 'Bill Gates',
+        emailaddress: 'bill.gates@aov.com',
+        role: 'Manager',
+    },
+];
+
+export default {
+    name: "CompanyUsers",
+    data() {
+        return {
+            visible: false,
+            loading: false,
+            data,
+            searchText: '',
+            searchInput: null,
+            searchedColumn: '',
+        };
+    },
+    computed: {
+        columns() {
+            const columns = [
+                {
+                    title: 'Name',
+                    dataIndex: 'name',
+                    key: 'name',
+                    sorter: (a, b) => { return a.name.localeCompare(b.name)},
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
                     },
-                    {
-                        title: 'Email Address',
-                        dataIndex: 'emailaddress',
-                        key: 'emailaddress',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.emailaddress
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
+                    onFilter: (value, record) =>
+                        record.name
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
                     },
-                    {
-                        title: 'Role',
-                        dataIndex: 'role',
-                        key: 'role',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.role
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
+                    
+                },
+                {
+                    title: 'Email Address',
+                    dataIndex: 'emailaddress',
+                    key: 'emailaddress',
+                    sorter: (a, b) => { return a.emailaddress.localeCompare(b.emailaddress)},
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
                     },
-                    {
-                        title: 'Action',
-                        key: 'action',
-                        scopedSlots: { customRender: 'action' },
+                    onFilter: (value, record) =>
+                        record.emailaddress
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
                     },
-                ];
-                return columns;
-            },
+                },
+                {
+                    title: 'Role',
+                    dataIndex: 'role',
+                    sorter: (a, b) => { return a.role.localeCompare(b.role)},
+                    filters: [
+                        {
+                            text: 'Admin',
+                            value: 'Admin',
+                        },
+                        {
+                            text: 'Manager',
+                            value: 'Manager',
+                        },
+                    ],
+                    filterMultiple: true,
+                    onFilter: (value, record) => record.role.indexOf(value) === 0,
+                },
+                {
+                    title: 'Action',
+                    key: 'action',
+                    scopedSlots: { customRender: 'action' },
+                },
+            ];
+            return columns;
         },
-        methods: {
-            handleSearch(selectedKeys, confirm, dataIndex) {
-                confirm();
-                this.searchText = selectedKeys[0];
-                this.searchedColumn = dataIndex;
-            },
-            handleReset(clearFilters) {
-                clearFilters();
-                this.searchText = '';
-            },
-            showModal() {
-                this.visible = true;
-            },
-            handleCancel(e) {
-                this.visible = false;
-            },
+    },
+    methods: {
+        handleSearch(selectedKeys, confirm, dataIndex) {
+            confirm();
+            this.searchText = selectedKeys[0];
+            this.searchedColumn = dataIndex;
         },
-    }
+        handleReset(clearFilters) {
+            clearFilters();
+            this.searchText = '';
+        },
+        showModal() {
+            this.visible = true;
+        },
+        handleCancel(e) {
+            this.visible = false;
+        },
+    },
+}
 </script>
 
 <style scoped>

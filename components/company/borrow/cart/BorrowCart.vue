@@ -2,7 +2,7 @@
     <div>
         <h3><b>List of Requested Employees</b></h3>
         <div class="table-responsive">
-            <a-table :data-source="data" :columns="columns">
+            <a-table :data-source="data" :columns="columns" :loading="loading">
                 <div
                     slot="filterDropdown"
                     slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -56,12 +56,6 @@
         <a-row>
             <a-form>
                 <a-col :lg="{ span: 12 }" :md="{ span: 12 }" :sm="{ span: 24 }">
-                    <a-form-item label="Duration of Request">
-                        <a-range-picker
-                            :disabled-date="disabledDate"
-                            format="YYYY-MM-DD"
-                            style="width: 330px" />
-                    </a-form-item>
                     <p><b> Contact Name: </b><span>Danny Sullivan</span></p>
                     <p><b> Contact Person: </b><span>(724) 824-1233</span></p>
                     <p><b> Contact Address: </b><span>5804 Forbes Ave, Pittsburgh, PA 15217</span></p>
@@ -89,6 +83,7 @@ import moment from 'moment';
 const data = [
     {
         key: '1',
+        durationofrequest: 'July 20, 2020 - July 24, 2020',
         employeeid: 'AOV000001',
         zipcode: '95035',
         levelofexperience: 'Master',
@@ -97,6 +92,7 @@ const data = [
     },
     {
         key: '2',
+        durationofrequest: 'July 20, 2020 - July 24, 2020',
         employeeid: 'AOV000002',
         zipcode: '95035',
         levelofexperience: 'Industrial, Fire Alarm, Security',
@@ -109,6 +105,7 @@ export default {
     data() {
         return {
             visible: false,
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -119,9 +116,34 @@ export default {
         columns() {
             const columns = [
                 {
+                    title: 'Duration of Request',
+                    dataIndex: 'durationofrequest',
+                    key: 'durationofrequest',
+                    sorter: (a, b) => { return a.durationofrequest.localeCompare(b.durationofrequest)},
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
+                    },
+                    onFilter: (value, record) =>
+                        record.durationofrequest
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                    
+                },
+                {
                     title: 'Employee ID',
                     dataIndex: 'employeeid',
                     key: 'employeeid',
+                    sorter: (a, b) => { return a.employeeid.localeCompare(b.employeeid)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -145,6 +167,7 @@ export default {
                     title: 'Zip Code',
                     dataIndex: 'zipcode',
                     key: 'zipcode',
+                    sorter: (a, b) => { return a.zipcode.localeCompare(b.zipcode)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -167,28 +190,41 @@ export default {
                     title: 'Level Of Experience',
                     dataIndex: 'levelofexperience',
                     key: 'levelofexperience',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.levelofexperience
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.levelofexperience.localeCompare(b.levelofexperience)},
+                    filters: [
+                        {
+                            text: 'Master',
+                            value: 'Master',
+                        },
+                        {
+                            text: 'Journeyman',
+                            value: 'Journeyman',
+                        },
+                        {
+                            text: '1st Year',
+                            value: '1st Year',
+                        },
+                        {
+                            text: '2nd Year',
+                            value: '2nd Year',
+                        },
+                        {
+                            text: '3rd Year',
+                            value: '3rd Year',
+                        },
+                        {
+                            text: '4th Year',
+                            value: '4th Year',
+                        },
+                    ],
+                    filterMultiple: true,
+                    onFilter: (value, record) => record.levelofexperience.indexOf(value) === 0,
                 },
                 {
                     title: 'Area of Work',
                     dataIndex: 'areaofwork',
                     key: 'areaofwork',
+                    sorter: (a, b) => { return a.areaofwork.localeCompare(b.areaofwork)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -211,6 +247,7 @@ export default {
                     title: 'Hourly Rate ($/hr)',
                     dataIndex: 'hourlyrate',
                     key: 'hourlyrate',
+                    sorter: (a, b) => { return a.hourlyrate.localeCompare(b.hourlyrate)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',

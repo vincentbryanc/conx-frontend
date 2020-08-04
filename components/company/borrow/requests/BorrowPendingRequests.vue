@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="table-responsive">
-            <a-table :data-source="data" :columns="columns">
+            <a-table :data-source="data" :columns="columns" :loading="loading">
                 <div
                     slot="filterDropdown"
                     slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -104,6 +104,7 @@ export default {
     data() {
         return {
             visible: false,
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -120,6 +121,7 @@ export default {
                     title: 'Requested Date',
                     dataIndex: 'requesteddate',
                     key: 'requesteddate',
+                    sorter: (a, b) => { return a.requesteddate.localeCompare(b.requesteddate)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -143,6 +145,7 @@ export default {
                     title: 'Requested By',
                     dataIndex: 'requestedby',
                     key: 'requestedby',
+                    sorter: (a, b) => { return a.requestedby.localeCompare(b.requestedby)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',

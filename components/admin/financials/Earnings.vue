@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="table-responsive">
-            <a-table :data-source="data" :columns="columns">
+            <a-table :data-source="data" :columns="columns" :loading="loading">
                 <div
                     slot="filterDropdown"
                     slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -237,6 +237,7 @@ export default {
     name: "Earnings",
     data() {
         return {
+            loading: false,
             visible: false,
             data,
             workeddata,
@@ -252,6 +253,7 @@ export default {
                     title: 'Transaction Date',
                     dataIndex: 'transactiondate',
                     key: 'transactiondate',
+                    sorter: (a, b) => { return a.transactiondate.localeCompare(b.transactiondate)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -274,6 +276,7 @@ export default {
                     title: 'Invoice Number',
                     dataIndex: 'invoicenumber',
                     key: 'invoicenumber',
+                    sorter: (a, b) => { return a.invoicenumber.localeCompare(b.invoicenumber)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -296,6 +299,7 @@ export default {
                     title: 'Company Name',
                     dataIndex: 'companyname',
                     key: 'companyname',
+                    sorter: (a, b) => { return a.companyname.localeCompare(b.companyname)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -318,45 +322,25 @@ export default {
                     title: 'Amount',
                     dataIndex: 'amount',
                     key: 'amount',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.amount
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.amount.localeCompare(b.amount)},
                 },
                 {
                     title: 'Earning Type',
                     dataIndex: 'eaningtype',
                     key: 'eaningtype',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.eaningtype
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.eaningtype.localeCompare(b.eaningtype)},
+                    filters: [
+                        {
+                            text: 'Service Fee',
+                            value: 'Service Fee',
+                        },
+                        {
+                            text: 'Subscription',
+                            value: 'Subscription',
+                        },
+                    ],
+                    filterMultiple: true,
+                    onFilter: (value, record) => record.eaningtype.indexOf(value) === 0,
                 },
                 {
                     title: 'Action',

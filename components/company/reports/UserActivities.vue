@@ -1,6 +1,6 @@
 <template>
     <div class="table-responsive">
-        <a-table :data-source="data" :columns="columns">
+        <a-table :data-source="data" :columns="columns" :loading="loading">
             <div
                 slot="filterDropdown"
                 slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -51,99 +51,102 @@
 </template>
 
 <script>
-    const data = [
-        {
-            key: '1',
-            name: 'Steve Rogers',
-            datetime: 'July 24, 2020 10:19 AM',
-            activity: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        },
-        {
-            key: '2',
-            name: 'Thor Odinson',
-            datetime: 'July 24, 2020 10:25 AM',
-            activity: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        },
-    ];
-    export default {
-        name: "UserActivities",
-        data() {
-            return {
-                data,
-                searchText: '',
-                searchInput: null,
-                searchedColumn: '',
-            };
-        },
-        computed: {
-            columns() {
-                const columns = [
-                    {
-                        title: 'Name',
-                        dataIndex: 'name',
-                        key: 'name',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.name
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
-                        
+const data = [
+    {
+        key: '1',
+        name: 'Steve Rogers',
+        datetime: 'July 24, 2020 10:19 AM',
+        activity: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    },
+    {
+        key: '2',
+        name: 'Thor Odinson',
+        datetime: 'July 24, 2020 10:25 AM',
+        activity: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    },
+];
+export default {
+    name: "UserActivities",
+    data() {
+        return {
+            loading: false,
+            data,
+            searchText: '',
+            searchInput: null,
+            searchedColumn: '',
+        };
+    },
+    computed: {
+        columns() {
+            const columns = [
+                {
+                    title: 'Name',
+                    dataIndex: 'name',
+                    key: 'name',
+                    sorter: (a, b) => { return a.name.localeCompare(b.name)},
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
                     },
-                    {
-                        title: 'Date & Time',
-                        dataIndex: 'datetime',
-                        key: 'datetime',
-                        scopedSlots: {
-                            filterDropdown: 'filterDropdown',
-                            filterIcon: 'filterIcon',
-                            customRender: 'customRender',
-                        },
-                        onFilter: (value, record) =>
-                            record.datetime
-                            .toString()
-                            .toLowerCase()
-                            .includes(value.toLowerCase()),
-                        onFilterDropdownVisibleChange: visible => {
-                            if (visible) {
-                                setTimeout(() => {
-                                    this.searchInput.focus();
-                                });
-                            }
-                        },
+                    onFilter: (value, record) =>
+                        record.name
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
                     },
-                    {
-                        title: 'Activitiy',
-                        dataIndex: 'activity',
-                        key: 'activity',
+                    
+                },
+                {
+                    title: 'Date & Time',
+                    dataIndex: 'datetime',
+                    key: 'datetime',
+                    sorter: (a, b) => { return a.datetime.localeCompare(b.datetime)},
+                    scopedSlots: {
+                        filterDropdown: 'filterDropdown',
+                        filterIcon: 'filterIcon',
+                        customRender: 'customRender',
                     },
-                ];
-                return columns;
-            },
+                    onFilter: (value, record) =>
+                        record.datetime
+                        .toString()
+                        .toLowerCase()
+                        .includes(value.toLowerCase()),
+                    onFilterDropdownVisibleChange: visible => {
+                        if (visible) {
+                            setTimeout(() => {
+                                this.searchInput.focus();
+                            });
+                        }
+                    },
+                },
+                {
+                    title: 'Activitiy',
+                    dataIndex: 'activity',
+                    key: 'activity',
+                },
+            ];
+            return columns;
         },
-        methods: {
-            handleSearch(selectedKeys, confirm, dataIndex) {
-                confirm();
-                this.searchText = selectedKeys[0];
-                this.searchedColumn = dataIndex;
-            },
-            handleReset(clearFilters) {
-                clearFilters();
-                this.searchText = '';
-            },
+    },
+    methods: {
+        handleSearch(selectedKeys, confirm, dataIndex) {
+            confirm();
+            this.searchText = selectedKeys[0];
+            this.searchedColumn = dataIndex;
         },
-    }
+        handleReset(clearFilters) {
+            clearFilters();
+            this.searchText = '';
+        },
+    },
+}
 </script>
 
 <style>

@@ -1,6 +1,6 @@
 <template>
     <div class="table-responsive">
-        <a-table :data-source="data" :columns="columns">
+        <a-table :data-source="data" :columns="columns" :loading="loading">
             <div
                 slot="filterDropdown"
                 slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -128,6 +128,7 @@ export default {
     data() {
         return {
             visible: false,
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -141,6 +142,7 @@ export default {
                     title: 'Approved Date',
                     dataIndex: 'approveddate',
                     key: 'approveddate',
+                    sorter: (a, b) => { return a.approveddate.localeCompare(b.approveddate)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -164,6 +166,7 @@ export default {
                     title: 'Employee Name',
                     dataIndex: 'employeename',
                     key: 'employeename',
+                    sorter: (a, b) => { return a.employeename.localeCompare(b.employeename)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -186,6 +189,7 @@ export default {
                     title: 'Client Name',
                     dataIndex: 'clientname',
                     key: 'clientname',
+                    sorter: (a, b) => { return a.clientname.localeCompare(b.clientname)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -208,6 +212,7 @@ export default {
                     title: 'Contact Name',
                     dataIndex: 'contactname',
                     key: 'contactname',
+                    sorter: (a, b) => { return a.contactname.localeCompare(b.contactname)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -230,6 +235,7 @@ export default {
                     title: 'Contact Number',
                     dataIndex: 'contactnumber',
                     key: 'contactnumber',
+                    sorter: (a, b) => { return a.contactnumber.localeCompare(b.contactnumber)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',

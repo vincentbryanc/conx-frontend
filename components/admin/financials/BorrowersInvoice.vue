@@ -1,6 +1,6 @@
 <template>
     <div class="table-responsive">
-        <a-table :data-source="data" :columns="columns">
+        <a-table :data-source="data" :columns="columns" :loading="loading">
             <div
                 slot="filterDropdown"
                 slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -94,6 +94,7 @@ export default {
     name: "BorrowersInvoice",
     data() {
         return {
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -107,6 +108,7 @@ export default {
                     title: 'Invoice Number',
                     dataIndex: 'invoicenumber',
                     key: 'invoicenumber',
+                    sorter: (a, b) => { return a.invoicenumber.localeCompare(b.invoicenumber)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -129,6 +131,7 @@ export default {
                     title: 'Employee Name',
                     dataIndex: 'employeename',
                     key: 'employeename',
+                    sorter: (a, b) => { return a.employeename.localeCompare(b.employeename)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -151,6 +154,7 @@ export default {
                     title: 'Loaning Company',
                     dataIndex: 'loaningcompany',
                     key: 'loaningcompany',
+                    sorter: (a, b) => { return a.loaningcompany.localeCompare(b.loaningcompany)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -173,6 +177,7 @@ export default {
                     title: 'Borrowing Company',
                     dataIndex: 'borrowingcompany',
                     key: 'borrowingcompany',
+                    sorter: (a, b) => { return a.borrowingcompany.localeCompare(b.borrowingcompany)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -195,11 +200,13 @@ export default {
                     title: 'Service Charge',
                     dataIndex: 'servicecharge',
                     key: 'servicecharge',
+                    sorter: (a, b) => { return a.servicecharge.localeCompare(b.servicecharge)},
                 },
                 {
                     title: 'Due Date',
                     dataIndex: 'duedate',
                     key: 'duedate',
+                    sorter: (a, b) => { return a.duedate.localeCompare(b.duedate)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -222,45 +229,29 @@ export default {
                     title: 'Status',
                     dataIndex: 'status',
                     key: 'status',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.status
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.status.localeCompare(b.status)},
+                    filters: [
+                        {
+                            text: 'Unpaid',
+                            value: 'Unpaid',
+                        },
+                        {
+                            text: 'Partial Payment',
+                            value: 'Partial Payment',
+                        },
+                        {
+                            text: 'Full Payment',
+                            value: 'Full Payment',
+                        },
+                    ],
+                    filterMultiple: true,
+                    onFilter: (value, record) => record.status.indexOf(value) === 0,
                 },
                 {
                     title: 'Total Transaction Cose',
                     dataIndex: 'totaltransactioncost',
                     key: 'totaltransactioncost',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.totaltransactioncost
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.totaltransactioncost.localeCompare(b.totaltransactioncost)},
                 },
                 {
                     title: 'Action',

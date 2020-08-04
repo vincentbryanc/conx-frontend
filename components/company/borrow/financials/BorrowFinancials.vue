@@ -2,7 +2,7 @@
     <div>
         <br />
         <div class="table-responsive">
-            <a-table :data-source="data" :columns="columns">
+            <a-table :data-source="data" :columns="columns" :loading="loading">
                 <div
                     slot="filterDropdown"
                     slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -100,6 +100,7 @@ export default {
     data() {
         return {
             visible: false,
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -116,6 +117,7 @@ export default {
                     title: 'Transaction Date',
                     dataIndex: 'transactiondate',
                     key: 'transactiondate',
+                    sorter: (a, b) => { return a.transactiondate.localeCompare(b.transactiondate)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -138,6 +140,7 @@ export default {
                     title: 'Invoice Number',
                     dataIndex: 'invoicenumber',
                     key: 'invoicenumber',
+                    sorter: (a, b) => { return a.invoicenumber.localeCompare(b.invoicenumber)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -160,6 +163,7 @@ export default {
                     title: 'Employee Name',
                     dataIndex: 'employeename',
                     key: 'employeename',
+                    sorter: (a, b) => { return a.employeename.localeCompare(b.employeename)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -182,89 +186,37 @@ export default {
                     title: 'No of Hours Worked',
                     dataIndex: 'noofhoursworked',
                     key: 'noofhoursworked',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.noofhoursworked
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.noofhoursworked.localeCompare(b.noofhoursworked)},
                 },
                 {
                     title: 'Billing rate',
                     dataIndex: 'billingrate',
                     key: 'billingrate',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.billingrate
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.billingrate.localeCompare(b.billingrate)},
                 },
                 {
                     title: 'Total Cost',
                     dataIndex: 'totalcost',
                     key: 'totalcost',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.totalcost
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.totalcost.localeCompare(b.totalcost)},
                 },
                 {
                     title: 'Status',
                     dataIndex: 'status',
                     key: 'status',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.status
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.status.localeCompare(b.status)},
+                    filters: [
+                        {
+                            text: 'Waiting for Payment',
+                            value: 'Waiting for Payment',
+                        },
+                        {
+                            text: 'Payment Received',
+                            value: 'Payment Received',
+                        },
+                    ],
+                    filterMultiple: true,
+                    onFilter: (value, record) => record.status.indexOf(value) === 0,
                 },
                 {
                     title: 'Action',

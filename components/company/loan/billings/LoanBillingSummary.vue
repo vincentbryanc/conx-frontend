@@ -1,7 +1,7 @@
 <template>
     <div class="table-responsive">
         <br />
-        <a-table :data-source="data" :columns="columns">
+        <a-table :data-source="data" :columns="columns" :loading="loading">
             <div
                 slot="filterDropdown"
                 slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -69,6 +69,7 @@ export default {
     name: "LoanBillingSummary",
     data() {
         return {
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -82,6 +83,7 @@ export default {
                     title: 'Client Name',
                     dataIndex: 'clientname',
                     key: 'clientname',
+                    sorter: (a, b) => { return a.clientname.localeCompare(b.clientname)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -104,89 +106,25 @@ export default {
                     title: 'Loanded Worker Count',
                     dataIndex: 'loandedworkercount',
                     key: 'loandedworkercount',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.loandedworkercount
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.loandedworkercount.localeCompare(b.loandedworkercount)},
                 },
                 {
                     title: 'Pending Invoice',
                     dataIndex: 'pendinginvoice',
                     key: 'pendinginvoice',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.pendinginvoice
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.pendinginvoice.localeCompare(b.pendinginvoice)},
                 },
                 {
                     title: 'In Progress Invoice',
                     dataIndex: 'inprogressinvoice',
                     key: 'inprogressinvoice',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.inprogressinvoice
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.inprogressinvoice.localeCompare(b.inprogressinvoice)},
                 },
                 {
                     title: 'Request For Modification',
                     dataIndex: 'requestformodification',
                     key: 'requestformodification',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.requestformodification
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.requestformodification.localeCompare(b.requestformodification)},
                 },
                 {
                     title: 'Action',

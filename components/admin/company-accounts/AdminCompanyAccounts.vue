@@ -1,6 +1,6 @@
 <template>
     <div class="table-responsive">
-        <a-table :data-source="data" :columns="columns">
+        <a-table :data-source="data" :columns="columns" :loading="loading">
             <div
                 slot="filterDropdown"
                 slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -83,6 +83,7 @@ export default {
     name: "CompanyAccounts",
     data() {
         return {
+            loading: false,
             data,
             searchText: '',
             searchInput: null,
@@ -96,6 +97,7 @@ export default {
                     title: 'Company Name',
                     dataIndex: 'companyname',
                     key: 'companyname',
+                    sorter: (a, b) => { return a.companyname.localeCompare(b.companyname)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -118,6 +120,7 @@ export default {
                     title: 'Subscription Expiration',
                     dataIndex: 'subscriptionexpiration',
                     key: 'subscriptionexpiration',
+                    sorter: (a, b) => { return a.subscriptionexpiration.localeCompare(b.subscriptionexpiration)},
                     scopedSlots: {
                         filterDropdown: 'filterDropdown',
                         filterIcon: 'filterIcon',
@@ -140,60 +143,55 @@ export default {
                     title: 'Signup Status',
                     dataIndex: 'signupstatus',
                     key: 'signupstatus',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.signupstatus
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.signupstatus.localeCompare(b.signupstatus)},
+                    filters: [
+                        {
+                            text: 'Direct',
+                            value: 'Direct',
+                        },
+                        {
+                            text: 'Affiliate',
+                            value: 'Affiliate',
+                        },
+                    ],
+                    filterMultiple: true,
+                    onFilter: (value, record) => record.signupstatus.indexOf(value) === 0,
                 },
                 {
                     title: 'No. of Employees',
                     dataIndex: 'noofemployees',
                     key: 'noofemployees',
+                    sorter: (a, b) => { return a.noofemployees.localeCompare(b.noofemployees)},
                 },
                 {
                     title: 'No. of Loaned Employees',
                     dataIndex: 'noofloanedemployees',
                     key: 'noofloanedemployees',
+                    sorter: (a, b) => { return a.noofloanedemployees.localeCompare(b.noofloanedemployees)},
                 },
                 {
                     title: 'No. of Borrowed Employees',
                     dataIndex: 'noofborrowedemployees',
                     key: 'noofborrowedemployees',
+                    sorter: (a, b) => { return a.noofborrowedemployees.localeCompare(b.noofborrowedemployees)},
                 },
                 {
                     title: 'Account Status',
                     dataIndex: 'accountstatus',
                     key: 'accountstatus',
-                    scopedSlots: {
-                        filterDropdown: 'filterDropdown',
-                        filterIcon: 'filterIcon',
-                        customRender: 'customRender',
-                    },
-                    onFilter: (value, record) =>
-                        record.accountstatus
-                        .toString()
-                        .toLowerCase()
-                        .includes(value.toLowerCase()),
-                    onFilterDropdownVisibleChange: visible => {
-                        if (visible) {
-                            setTimeout(() => {
-                                this.searchInput.focus();
-                            });
-                        }
-                    },
+                    sorter: (a, b) => { return a.accountstatus.localeCompare(b.accountstatus)},
+                    filters: [
+                        {
+                            text: 'Active',
+                            value: 'Active',
+                        },
+                        {
+                            text: 'Banned',
+                            value: 'Banned',
+                        },
+                    ],
+                    filterMultiple: true,
+                    onFilter: (value, record) => record.accountstatus.indexOf(value) === 0,
                 },
                 {
                     title: 'Action',
